@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * main - its the main shell
  * Return: 0 on success
@@ -12,19 +12,20 @@ int main(void)
 	printf("$");
 	while ((read = getline(&line, &len, stdin)) != -1)
 	{
-		if (read == 0) /* handles EOF */
+		if (read == 0) /* handles EOF - ctrl-d */
 		{
 			break;
 		}
 		if (read == -1)
 		{
-			perror("cannot get line");
+			perror("cannot get line");/* check */
+			free(line);
 			exit(EXIT_FAILURE);
 		}
-		printf("%s\n", line);
+		printf("%s", line);
 		printf("$");
 	}
-	perror("cannot get line");
+	perror("ctrl d worked");
 	free(line);
 
 	return (0);
