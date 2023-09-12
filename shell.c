@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
  * main - its the main shell
- * Return : 0 on success
+ * Return: 0 on success
  */
-int main()
+int main(void)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -16,9 +16,16 @@ int main()
 		{
 			break;
 		}
+		if (read == -1)
+		{
+			perror("cannot get line");
+			exit(EXIT_FAILURE);
+		}
 		printf("%s\n", line);
 		printf("$");
 	}
+	perror("cannot get line");
+	free(line);
 
 	return (0);
 }
