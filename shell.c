@@ -42,6 +42,7 @@ int main(void)
 		}
 		if (arg_count > 0)
 		{
+			args[arg_count] = NULL;
 			pid = fork();
 			/* where we use cmds entered */
 			if (pid == -1) 
@@ -53,7 +54,8 @@ int main(void)
 			else if (pid == 0)/* sucessfull*/
 			{
                 /* This code runs in the child process */
-				/* execve*/     
+				/* execve*/ 
+				    
 
 				int exve = execve(args[0], args, NULL); 
 				if (exve == -1)
