@@ -9,6 +9,9 @@ int main(void)
 
 	size_t len = 0;
 	ssize_t read;
+	int arg_count = 0;
+	char *args[]; /* do we use malloc*/
+	pid_t pid;
 
 	printf("$");
 	while ((read = getline(&line, &len, stdin)) != -1)
@@ -29,11 +32,8 @@ int main(void)
 			read[line - 1] = '\0';
 		}
 
-		char *args[]; /* do we use malloc*/
 /* strdup to maintain original line*/
 		char *token = strtok(line, " "); /*separate cmds singular*/
-
-		int arg_count = 0;
 
 		while (token != NULL)
 		{
@@ -42,8 +42,27 @@ int main(void)
 		}
 		if (arg_count > 0)
 		{
+			pid = fork();
 			/* where we use cmds entered */
-			printf("%s", line);
+			if (pid == -1) 
+			{
+                perror("fork");
+                exit(EXIT_FAILURE);
+            } 
+			else if (pid == 0)/* sucessfull*/
+			{
+                /* This code runs in the child process */
+				/* execve*/            
+				perror(""); /* If execvp fails*/
+                exit(EXIT_FAILURE);
+            } 
+			else
+			{
+                /*parent pid waits for child*/
+                wait(NULL); /* Wait for the child to complete */
+            }
+			
+			/*printf("%s", line);*/
 			printf("$");
 		}
 		free(line);
