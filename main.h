@@ -12,4 +12,5 @@
 #include <fcntl.h>
 #include <limits.h>
 
+int _execve(char *line);
 #endif /*MAIN_H*/

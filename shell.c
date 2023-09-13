@@ -5,13 +5,11 @@
  */
 int main(void)
 {
-	char *line = NULL; /* stores data from cmd line*/
+	char *line = NULL; /* stores string from cmd line*/
 
 	size_t len = 0;
 	ssize_t read;
-	int arg_count = 0;
-	char *args[100]; /* do we use malloc*/
-	pid_t pid;
+	
 
 	printf("$");
 	while ((read = getline(&line, &len, stdin)) != -1)
@@ -31,49 +29,7 @@ int main(void)
 		{
 			read[line - 1] = '\0';
 		}
-
-/* strdup to maintain original line*/
-		char *token = strtok(line, " "); /*separate cmds singular*/
-
-		while (token != NULL)
-		{
-			args[arg_count++] = token;
-			token = strtok(NULL, " ");
-		}
-		if (arg_count > 0)
-		{
-			args[arg_count] = NULL;
-			pid = fork();
-			/* where we use cmds entered */
-			if (pid == -1) 
-			{
-                perror("fork");
-				free(line);
-                exit(EXIT_FAILURE);
-            } 
-			else if (pid == 0)/* sucessfull*/
-			{
-                /* This code runs in the child process */
-				/* execve*/ 
-				    
-
-				int exve = execve(args[0], args, NULL); 
-				if (exve == -1)
-				{
-					perror("execve");
-					free(line);
-					exit(EXIT_FAILURE);
-				}
-            } 
-			else
-			{
-                /*parent pid waits for child*/
-                wait(NULL); /* Wait for the child to complete */
-            }
-			
-			/*printf("%s", line);*/
-			printf("$");
-		}
+		_execve(line);
 		free(line);
 
 		return (0);
