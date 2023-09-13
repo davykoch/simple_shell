@@ -2,4 +2,7 @@
 /**
  * 
 */
-_execve(int argc, char *argv[], )
+int _execve(int argc, char *argv[], NULL)
+{
+	int val = 
+}
