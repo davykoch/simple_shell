@@ -5,9 +5,11 @@
  */
 int main(void)
 {
-	char *line = NULL;
+	char *line = NULL; /* stores string from cmd line*/
+
 	size_t len = 0;
 	ssize_t read;
+	
 
 	printf("$");
 	while ((read = getline(&line, &len, stdin)) != -1)
@@ -18,15 +20,18 @@ int main(void)
 		}
 		if (read == -1)
 		{
-			perror("cannot get line");/* check */
+			perror("cannot get line"); /* check */
 			free(line);
 			exit(EXIT_FAILURE);
 		}
-		printf("%s", line);
-		printf("$");
-	}
-	perror("ctrl d worked");
-	free(line);
+		/* Remove the newline character if present*/
+		if (read[line - 1] == '\n')
+		{
+			read[line - 1] = '\0';
+		}
+		_execve(line);
+		free(line);
 
-	return (0);
+		return (0);
+	}
 }
