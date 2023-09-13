@@ -10,7 +10,7 @@ int main(void)
 	size_t len = 0;
 	ssize_t read;
 	int arg_count = 0;
-	char *args[]; /* do we use malloc*/
+	char *args[100]; /* do we use malloc*/
 	pid_t pid;
 
 	printf("$");
@@ -47,19 +47,21 @@ int main(void)
 			if (pid == -1) 
 			{
                 perror("fork");
+				free(line);
                 exit(EXIT_FAILURE);
             } 
 			else if (pid == 0)/* sucessfull*/
 			{
                 /* This code runs in the child process */
-				/* execve*/      
+				/* execve*/     
 
-
-
-
-
-				perror(""); /* If execvp fails*/
-                exit(EXIT_FAILURE);
+				int exve = execve(args[0], args, NULL); 
+				if (exve == -1)
+				{
+					perror("execve");
+					free(line);
+					exit(EXIT_FAILURE);
+				}
             } 
 			else
 			{
