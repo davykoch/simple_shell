@@ -19,7 +19,7 @@ char *_strdup(const char *str)
 			if (!newstr)/*check if mem allocation was succesful*/
 			return (NULL);
 			for (int i = 0; i < length; i++)/*copy characters*/
-			newstr = str[i];
+			newstr[i] = str[i];
 
 			newstr[length] = '\0';/*Null-terminate new string*/
 			return (newstr);
@@ -45,3 +45,6 @@ char *_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
+/**
+  * 
