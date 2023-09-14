@@ -7,21 +7,21 @@
 void _execve(char *line) /* check if return void or int*/
 {
 	int arg_count = 0;
-	char *args[100]; /* do we use malloc*/
+	char *args[100]; /* check*/
 	pid_t pid;
 
 	char *token = strtok(line, " "); /*separate cmds singular*/
 
-	while (token != NULL)
+	while (token != NULL) /*free token free args some where*/
 	{
-		args[arg_count++] = strdup(token); /* strdup to maintain original line*/
+		args[arg_count++] = _strdup(token); /* strdup to maintain original line*/
 		token = strtok(NULL, " ");
 	}
 	if (arg_count > 0)
 	{
 		args[arg_count] = NULL;
 
-		pid = fork();
+		pid = fork(); /* child process*/
 		/* where we use cmds entered */
 		if (pid == -1)
 		{
@@ -33,6 +33,7 @@ void _execve(char *line) /* check if return void or int*/
 		{
 			/* This code runs in the child process */
 			/* execve*/
+			_path();
 
 			int exve = execve(args[0], args, NULL);
 
