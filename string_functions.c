@@ -47,4 +47,44 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
-  * 
+ * _strcmp compares two strings
+ * @s1: string to compare
+ * @s2: string to compare
+ * Return: 0 if they are equal
+ * otherwise perform lexicographical difference
+ */
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+		return (*s1 - *s2);
+		s1++;
+		s2++;
+	}
+	 if (*s1 == *s2)
+        return (0);
+    else
+        return (*s1 < *s2 ? -1 : 1);
+}
+/**
+ * _strcat - concatenates two strings
+ * @dest: destination buffer
+ * @src: source buffer
+ * Return: pointer to destination buffer
+*/
+char *_strcat(char *dest, char *src)
+{
+	if (dest == NULL || src == NULL)
+	return (dest);	
+	
+	char *ret = dest;
+	while (*dest)
+	dest++;
+	while (*src)
+	*dest++ = *src++;
+
+	*dest = '\0';
+
+	return (ret);
+}
