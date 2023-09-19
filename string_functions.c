@@ -88,3 +88,19 @@ char *_strcat(char *dest, char *src)
 
 	return (ret);
 }
+
+/**
+ * _strlen - returns length of a string
+ * @s: string to check its length
+ * Return: length of the string
+*/
+ int _strlen(char *s)
+{
+	int i = 0;
+
+	if (!s)
+	return (0);
+	while (*s++)
+	i++;
+	return (i);
+}

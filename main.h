@@ -20,5 +20,17 @@ char *_strdup(const char *str);
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
+int _strlen(char *s);
 
+typedef struct info
+{
+	char *arg;
+	char *argv;
+	int status;
+	int argc;
+	int err_num;
+	char *path;
+
+
+} info_t;
 #endif /*MAIN_H*/
