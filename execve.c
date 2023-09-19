@@ -9,15 +9,18 @@ void _execve(char *line) /* check if return void or int*/
 	int arg_count = 0;
 	char *args[100]; /* check*/
 	pid_t pid;
+	 char *delim = " ";
 
-	char *token = strtok(line, " "); /*separate cmds singular*/
+
+	/* token = int _tokenize(line, delim, &arg_count);*/
+	char *token = strtok(line, delim); /*separate cmds singular*/
 
 	while (token != NULL) /*free token free args some where*/
 	{
 		args[arg_count++] = _strdup(token); /* strdup to maintain original line*/
-		token = strtok(NULL, " ");
+		token = strtok(NULL, delim);
 	}
-	if (arg_count > 0)
+	if (arg_count > 0) 
 	{
 		args[arg_count] = NULL;
 
@@ -25,7 +28,7 @@ void _execve(char *line) /* check if return void or int*/
 		/* where we use cmds entered */
 		if (pid == -1)
 		{
-			perror("fork");
+			perror("error -fork");
 			free(line);
 			exit(EXIT_FAILURE);
 		}
@@ -39,7 +42,7 @@ void _execve(char *line) /* check if return void or int*/
 
 			if (exve == -1)
 			{
-				perror("execve");
+				perror("error -execve");
 				free(line);
 				exit(EXIT_FAILURE);
 			}

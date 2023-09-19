@@ -9,11 +9,15 @@ int main(void)
 
 	size_t len = 0;
 	ssize_t read;
+	bool from_pipe = false;
 	
-
-	printf("$");
-	while ((read = getline(&line, &len, stdin)) != -1)
+	write(STDOUT_FILENO, '$', 1);/*printf("$");*/
+	while ((read = getline(&line, &len, stdin)) != -1 && !from_pipe) /*check*/
 	{
+		if (issaty(STDIN_FILENO) == 0)
+		{
+			from_pipe = true;
+		}
 		if (read == 0) /* handles EOF - ctrl-d */
 		{
 			break;
