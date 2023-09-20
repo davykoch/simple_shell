@@ -9,7 +9,7 @@ void _execve(char *line) /* check if return void or int*/
 	int arg_count = 0;
 	char *args[100]; /* check*/
 	pid_t pid;
-	 char *delim = " ";
+	char *delim = " ";
 
 
 	/* token = int _tokenize(line, delim, &arg_count);*/
@@ -20,7 +20,7 @@ void _execve(char *line) /* check if return void or int*/
 		args[arg_count++] = strdup(token); /* strdup to maintain original line*/
 		token = strtok(NULL, delim);
 	}
-	if (arg_count > 0) 
+	if (arg_count > 0)
 	{
 		args[arg_count] = NULL;
 
@@ -37,8 +37,8 @@ void _execve(char *line) /* check if return void or int*/
 			/* This code runs in the child process */
 			/**
 			 *  execve
-			*_path();
-			*/
+			 *_path();
+			 */
 
 			int exve = execve(args[0], args, NULL);
 
