@@ -14,8 +14,8 @@ int main(void)
 	write(STDOUT_FILENO, "$", 1);/*printf("$");*/
 	while (1 && !from_pipe) /*check*/
 	{
-	read = getline(&line, &len, stdin);
-	
+		read = getline(&line, &len, stdin);
+
 		if (isatty(STDIN_FILENO) == 1)
 		{
 			from_pipe = true;
@@ -38,7 +38,6 @@ int main(void)
 		_execve(line);
 		write(STDOUT_FILENO, "$", 1);/*printf("$");*/
 		free(line);
-
 	}
-	return (0);	
+	return (0);
 }
