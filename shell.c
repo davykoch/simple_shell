@@ -36,13 +36,8 @@ int main(void)
 			read[line - 1] = '\0';
 		}
 		_execve(line);
-<<<<<<< HEAD
 		write(STDOUT_FILENO, "$", 1);/*printf("$");*/
 		free(line);
-=======
-	}
-	free(line);
->>>>>>> a0c27f661744e4a451a02a9056bb39a6a8f500da
 
 	}
 	return (0);	
