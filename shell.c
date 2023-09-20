@@ -10,9 +10,12 @@ int main(void)
 	size_t len = 0;
 	ssize_t read;
 	bool from_pipe = false;
+
 	write(STDOUT_FILENO, "$", 1);/*printf("$");*/
-	while ((read = getline(&line, &len, stdin)) != -1 && !from_pipe) /*check*/
+	while (1 && !from_pipe) /*check*/
 	{
+	read = getline(&line, &len, stdin);
+	
 		if (isatty(STDIN_FILENO) == 1)
 		{
 			from_pipe = true;
@@ -33,10 +36,9 @@ int main(void)
 			read[line - 1] = '\0';
 		}
 		_execve(line);
-	
-	}
-		
+		write(STDOUT_FILENO, "$", 1);/*printf("$");*/
 		free(line);
 
-		return (0);
+	}
+	return (0);	
 }

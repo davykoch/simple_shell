@@ -56,6 +56,6 @@ void _execve(char *line) /* check if return void or int*/
 		}
 
 		/*printf("%s", line);*/
-		printf("$");
+	/*printf("$");*/
 	}
 }
