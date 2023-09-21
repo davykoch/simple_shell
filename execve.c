@@ -12,12 +12,12 @@ void _execve(char *line) /* check if return void or int*/
 	char *delim = " ";
 
 	/* token = int _tokenize(line, delim, &arg_count);*/
-	char *token = strtok(line, delim); /*separate cmds singular*/
+	char *token = _strtok(line, delim); /*separate cmds singular*/
 
 	while (token != NULL) /*free token free args some where*/
 	{
 		args[arg_count++] = strdup(token); /* strdup to maintain original line*/
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 	if (arg_count > 0)
 	{
@@ -53,7 +53,7 @@ void _execve(char *line) /* check if return void or int*/
 			else
 			{
 				char *path = getenv("PATH");
-				char *path_token = strtok(path, ":");
+				char *path_token = _strtok(path, ":");
 
 				while (path_token != NULL)
 				{
@@ -72,7 +72,7 @@ void _execve(char *line) /* check if return void or int*/
 						}
 					}
 					free(full_path);
-					path_token = strtok(NULL, ":");
+					path_token = _strtok(NULL, ":");
 				}
 				/*/ If we reach here, the command was not found in PATH*/
 				/*fprintf(stderr, "Command not found: %s\n", args[0]);*/
