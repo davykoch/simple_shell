@@ -13,7 +13,7 @@
 #include <limits.h>
 #include <stdbool.h>
 
-int _execve(char *line);
+void _execve(char *line);
 
 /*string functions*/
 char *_strdup(const char *str);

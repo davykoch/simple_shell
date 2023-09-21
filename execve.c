@@ -17,7 +17,7 @@ void _execve(char *line) /* check if return void or int*/
 
 	while (token != NULL) /*free token free args some where*/
 	{
-		args[arg_count++] = _strdup(token); /* strdup to maintain original line*/
+		args[arg_count++] = strdup(token); /* strdup to maintain original line*/
 		token = strtok(NULL, delim);
 	}
 	if (arg_count > 0) 
@@ -35,8 +35,10 @@ void _execve(char *line) /* check if return void or int*/
 		else if (pid == 0) /* sucessfull*/
 		{
 			/* This code runs in the child process */
-			/* execve*/
-			_path();
+			/**
+			 *  execve
+			*_path();
+			*/
 
 			int exve = execve(args[0], args, NULL);
 
