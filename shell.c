@@ -9,17 +9,18 @@ int main(void)
 
 	size_t len = 0;
 	ssize_t read;
-	bool from_pipe = false;
+	/*bool from_pipe = false;*/
 
-	write(STDOUT_FILENO, "$", 1);/*printf("$");*/
-	while (1 && !from_pipe) /*check*/
+	write(STDOUT_FILENO, "$", 1);									 /*printf("$");*/
+	while ((read = getline(&line, &len, stdin)) != -1) /*check*/
 	{
-		read = getline(&line, &len, stdin);
 
-		if (isatty(STDIN_FILENO) == 1)
-		{
-			from_pipe = true;
-		}
+		/**
+		 * if (isatty(STDIN_FILENO) == 1)
+		*{
+		*	from_pipe = true;
+		*}
+		*/
 		if (read == 0) /* handles EOF - ctrl-d */
 		{
 			break;
@@ -31,13 +32,12 @@ int main(void)
 			exit(EXIT_FAILURE);
 		}
 		/* Remove the newline character if present*/
-		if (read[line - 1] == '\n')
+		if (line[read - 1] == '\n')
 		{
-			read[line - 1] = '\0';
+			line[read - 1] = '\0';
 		}
 		_execve(line);
-		write(STDOUT_FILENO, "$", 1);/*printf("$");*/
-		free(line);
+		write(STDOUT_FILENO, "$", 1); /*printf("$");*/
 	}
 	return (0);
 }

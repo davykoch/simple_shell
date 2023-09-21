@@ -21,6 +21,7 @@ char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
+char *_getenv(char *path_token, char **args);
 
 typedef struct info
 {
