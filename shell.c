@@ -3,7 +3,6 @@
  * main - its the main shell
  * Return: 0 on success
  */
-extern char **environ;
 int main(void)
 {
 	char *line = NULL; /* stores string from cmd line*/

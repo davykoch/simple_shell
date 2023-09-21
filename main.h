@@ -23,6 +23,7 @@ char *_strcat(char *dest, char *src);
 int _strlen(char *s);
 char *_getenv(char *path_token, char **args);
 
+extern char **environ;
 typedef struct info
 {
 	char *arg;
