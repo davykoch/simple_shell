@@ -4,13 +4,6 @@
 * @info: structure containing potenial arguments
 * Return: 0 if exit is successful
 * 1, if there is an error(invalid argument)
-*
-*int _exit(info_t *info)
-*{
-*	info->err_num = 0; //set exit staus with 0
-*	return (0);
-*}
-* this one is the one I think we should use
 */
 int _exit(info_t *info)
 {
