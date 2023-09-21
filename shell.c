@@ -11,16 +11,16 @@ int main(void)
 	ssize_t read;
 	/*bool from_pipe = false;*/
 
-	write(STDOUT_FILENO, "$", 1);									 /*printf("$");*/
+	write(STDOUT_FILENO, "$", 1);					   /*printf("$");*/
 	while ((read = getline(&line, &len, stdin)) != -1) /*check*/
 	{
 
 		/**
 		 * if (isatty(STDIN_FILENO) == 1)
-		*{
-		*	from_pipe = true;
-		*}
-		*/
+		 *{
+		 *	from_pipe = true;
+		 *}
+		 */
 		if (read == 0) /* handles EOF - ctrl-d */
 		{
 			break;
@@ -36,6 +36,12 @@ int main(void)
 		{
 			line[read - 1] = '\0';
 		}
+		if (strcmp(line, "exit") == 0)
+		{
+			free(line);
+			exit(EXIT_SUCCESS); /* Exit the shell*/
+		}
+
 		_execve(line);
 		write(STDOUT_FILENO, "$", 1); /*printf("$");*/
 	}
