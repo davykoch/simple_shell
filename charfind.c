@@ -3,7 +3,7 @@
  * 
  * 
 */
-char *_charfind(const char *string, char c)
+char *__strchr(const char *string, char c)
 {
 	while (*string != c && *string != '\0')
 	{
