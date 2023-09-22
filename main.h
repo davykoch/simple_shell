@@ -13,7 +13,7 @@
 #include <limits.h>
 #include <stdbool.h>
 
-void _execve(char *line);
+void _execve(char *line, char **envp);
 
 /*string functions*/
 char *_strdup(const char *str);
@@ -22,6 +22,10 @@ int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
 char *_getenv(char *path_token, char **args);
+
+void _getpath(char *line, char **args, char **envp);
+bool _isexec(char **args);
+int is_input(void);
 
 extern char **environ;
 typedef struct info

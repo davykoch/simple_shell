@@ -4,10 +4,12 @@
  * @line:string input by user
  * Return: void
  */
-void _execve(char *line) /* check if return void or int*/
+void _execve(char *line, char **envp) /* check if return void or int*/
 {
 	int arg_count = 0;
+
 	char *args[100]; /* check*/
+
 	pid_t pid;
 	char *delim = " ";
 
@@ -34,51 +36,24 @@ void _execve(char *line) /* check if return void or int*/
 		else if (pid == 0) /* sucessfull*/
 		{
 			/* This code runs in the child process */
-			/**
-			 *  execve
-			 *_path();
-			 */
+			/*char **env = environ;*/
+
 			if (access(args[0], X_OK) == 0)
 			{
 
-				int exve = execve(args[0], args, NULL);
+				int exve = execve(args[0], args, envp); /*NULL*/
 
 				if (exve == -1)
 				{
-					perror("error -execve");
+					perror("error -access");
+
 					free(line);
 					exit(EXIT_FAILURE);
 				}
 			}
 			else
 			{
-				char *path = getenv("PATH");
-				char *path_token = strtok(path, ":");
-
-				while (path_token != NULL)
-				{
-					char *full_path = _getenv(path_token, args);
-
-					if (access(full_path, X_OK) == 0)
-					{
-						int exve = execve(full_path, args, NULL);
-
-						if (exve == -1)
-						{
-							perror("error -execve");
-							free(line);
-							free(full_path);
-							exit(EXIT_FAILURE);
-						}
-					}
-					free(full_path);
-					path_token = strtok(NULL, ":");
-				}
-				/*/ If we reach here, the command was not found in PATH*/
-				/*fprintf(stderr, "Command not found: %s\n", args[0]);*/
-				perror("command not found");
-				free(line);
-				exit(EXIT_FAILURE);
+				_getpath(line, args, envp);
 			}
 		}
 		else
