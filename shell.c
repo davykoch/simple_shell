@@ -1,8 +1,8 @@
 #include "main.h"
 /**
-*
-*
-*/
+  * is_input - checks for interactive
+  * Return: integer value
+ */
 int is_input(void)
 {
 
@@ -19,6 +19,9 @@ int is_input(void)
 }
 /**
 * main - its the main shell
+* @ac: argument count
+* @av: argument vector
+* @envp: environment variable
 * Return: 0 on success
 */
 int main(int ac, char **av, char **envp)
@@ -30,7 +33,6 @@ int main(int ac, char **av, char **envp)
 
 	int linenumber = 0;
 
-	/*	bool is_input;*/
 	char *line = NULL; /* stores string from cmd line*/
 
 	(void) ac;
@@ -40,9 +42,7 @@ int main(int ac, char **av, char **envp)
 	{
 		linenumber++;
 		if (from_pipe && isatty(STDIN_FILENO))
-		{
 			write(STDOUT_FILENO, "$ ", 2);
-		}
 		read = getline(&line, &len, stdin);
 
 		if (read == -1)
@@ -55,16 +55,12 @@ int main(int ac, char **av, char **envp)
 				exit(EXIT_SUCCESS);
 			}
 			else
-			{
 				perror("cannot get line"); /* check */
 				free(line);
 				exit(EXIT_FAILURE);
-			}
 		}
 		if (line[read - 1] == '\n')
-		{
 			line[read - 1] = '\0';
-		}
 		_execve1(line, av, linenumber);
 	}
 	free(line);
