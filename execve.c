@@ -4,7 +4,7 @@
  * @line:string input by user
  * Return: void
  */
-void _execve(char *line) /* check if return void or int*/
+void _execve(char *line, char **av, int linenumber) /* check if return void or int*/
 {
 	int arg_count = 0;
 
@@ -37,7 +37,7 @@ void _execve(char *line) /* check if return void or int*/
 		{
 			/* This code runs in the child process */
 			/*char **env = environ;*/
-
+			
 			if (access(args[0], X_OK) == 0)
 			{
 
@@ -53,7 +53,7 @@ void _execve(char *line) /* check if return void or int*/
 			}
 			else
 			{
-				_getpath(line, args);
+				_getpath(line, args, av, linenumber);
 			}
 		}
 		else

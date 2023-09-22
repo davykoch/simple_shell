@@ -13,8 +13,8 @@
 #include <limits.h>
 #include <stdbool.h>
 
-void _execve(char *line);
-void _execve1(char *line);
+void _execve(char *line, char **av, int linenumber);
+void _execve1(char *line, char **av, int linenumber);
 /*string functions*/
 char *_strdup(const char *str);
 char *_strcpy(char *dest, char *src);
@@ -23,7 +23,7 @@ char *_strcat(char *dest, char *src);
 int _strlen(char *s);
 char *_getenv(char *path_token, char **args);
 
-void _getpath(char *line, char **args);
+void _getpath(char *line, char **args, char **av, int linenumber);
 bool _isexec(char **args);
 int is_input(void);
 

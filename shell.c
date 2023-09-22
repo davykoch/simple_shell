@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- *
- *
- */
+*
+*
+*/
 int is_input(void)
 {
 
@@ -18,21 +18,27 @@ int is_input(void)
 	}
 }
 /**
- * main - its the main shell
- * Return: 0 on success
- */
-int main(void)
+* main - its the main shell
+* Return: 0 on success
+*/
+int main(int ac, char **av, char **envp)
 {
 
 	size_t len = 0;
 	ssize_t read;
 	int from_pipe;
+
+	int linenumber = 0;
+
 	/*	bool is_input;*/
 	char *line = NULL; /* stores string from cmd line*/
 
+	(void) ac;
+	(void) envp;
 	from_pipe = is_input();
 	while (1) /*check*/
 	{
+		linenumber++;
 		if (from_pipe && isatty(STDIN_FILENO))
 		{
 			write(STDOUT_FILENO, "$ ", 2);
@@ -59,7 +65,7 @@ int main(void)
 		{
 			line[read - 1] = '\0';
 		}
-		_execve1(line);
+		_execve1(line, av, linenumber);
 	}
 	free(line);
 	return (0);

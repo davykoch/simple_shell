@@ -3,7 +3,7 @@
  *
  *
  */
-void _execve1(char *line)
+void _execve1(char *line, char **av, int linenumber)
 {
 	/* handle exit*/
 	if (strcmp(line, "exit") == 0)
@@ -26,6 +26,6 @@ void _execve1(char *line)
 	else
 	{
 
-		_execve(line);
+		_execve(line, av, linenumber);
 	}
 }
