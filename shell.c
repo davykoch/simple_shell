@@ -39,21 +39,28 @@ int main(int ac, char **av, char **envp)
 	while (1) /*check*/
 	{
 
-		if (from_pipe)
+		if (from_pipe && isatty(STDIN_FILENO))
 		{
 			/*from_pipe = true;*/
 			write(STDOUT_FILENO, "$ ", 2);
 		}
 		read = getline(&line, &len, stdin);
-		if (read == 0) /* handles EOF - ctrl-d */
-		{
-			break;
-		}
+		
 		if (read == -1)
 		{
+			if (feof(stdin))
+			{
+				if (from_pipe && isatty(STDIN_FILENO))
+					write(STDOUT_FILENO, "\n", 1);
+				free(line);
+				exit(EXIT_SUCCESS);
+			}
+			else
+			{
 			perror("cannot get line"); /* check */
 			free(line);
 			exit(EXIT_FAILURE);
+			}
 		}
 		/* Remove the newline character if present*/
 		if (line[read - 1] == '\n')
