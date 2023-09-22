@@ -3,6 +3,8 @@
  * _getpath - runs excve
  * @line: line read
  * @args: args from getline
+ * @av: argument vector
+ * @linenumber: line number of the line read
  * Return:void
  */
 void _getpath(char *line, char **args, char **av, int linenumber)
