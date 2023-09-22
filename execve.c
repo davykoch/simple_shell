@@ -1,9 +1,9 @@
 #include "main.h"
 /**
- * _execve - calls progs
- * @line:string input by user
- * Return: void
- */
+* _execve - calls progs
+* @line:string input by user
+* Return: void
+*/
 void _execve(char *line, char **av, int linenumber) /* check if return void or int*/
 {
 	int arg_count = 0;
@@ -37,7 +37,7 @@ void _execve(char *line, char **av, int linenumber) /* check if return void or i
 		{
 			/* This code runs in the child process */
 			/*char **env = environ;*/
-			
+
 			if (access(args[0], X_OK) == 0)
 			{
 
@@ -58,8 +58,22 @@ void _execve(char *line, char **av, int linenumber) /* check if return void or i
 		}
 		else
 		{
+			while (1)
+			{
+				wpid = waitpid(child_pid, &status, WUNTRACED);
+				if (wpid == -1)
+				{
+					perror("waitpid");
+					exit(EXIT_FAILURE);
+				}
+
+				if (WIFEXITED(status) || WIFSIGNALED(status))
+				{
+					break;
+				}
+			}
 			/*parent pid waits for child*/
-			wait(NULL); /* Wait for the child to complete */
+			/*wait(NULL);  Wait for the child to complete */
 		}
 
 		/**

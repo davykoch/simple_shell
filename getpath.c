@@ -35,5 +35,5 @@ void _getpath(char *line, char **args, char **av, int linenumber)
 	 fprintf(stderr, "%s: %d: %s: not found\n", av[0], linenumber, args[0]);
 
 	free(line);
-	exit(EXIT_FAILURE);
+	exit(127);
 }

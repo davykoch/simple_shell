@@ -1,4 +1,4 @@
-#include "mai"
+#include "main.h"
 char *_getenv(char *path_token, char **args)
 {
 	char *full_path = malloc(strlen(path_token) + strlen(args[0]) + 2);
