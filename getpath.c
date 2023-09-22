@@ -5,9 +5,10 @@
  * @args: args from getline
  * @av: argument vector
  * @linenumber: line number of the line read
+ * @envp: environment variable
  * Return:void
  */
-void _getpath(char *line, char **args, char **av, int linenumber)
+void _getpath(char *line, char **args, char **av, int linenumber, char **envp)
 {
 	char *path = getenv("PATH");
 	char *path_token = strtok(path, ":");
@@ -18,7 +19,7 @@ void _getpath(char *line, char **args, char **av, int linenumber)
 
 		if (access(full_path, X_OK) == 0)
 		{
-			int exve = execve(full_path, args, environ);
+			int exve = execve(full_path, args, envp);
 
 			if (exve == -1)
 			{
@@ -37,5 +38,5 @@ void _getpath(char *line, char **args, char **av, int linenumber)
 	 fprintf(stderr, "%s: %d: %s: not found\n", av[0], linenumber, args[0]);
 
 	free(line);
-	exit(127);
+	exit(EXIT_FAILURE);
 }
