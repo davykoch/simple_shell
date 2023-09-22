@@ -4,7 +4,7 @@
  * @line:string input by user
  * Return: void
  */
-void _execve(char *line, char **envp) /* check if return void or int*/
+void _execve(char *line) /* check if return void or int*/
 {
 	int arg_count = 0;
 
@@ -41,7 +41,7 @@ void _execve(char *line, char **envp) /* check if return void or int*/
 			if (access(args[0], X_OK) == 0)
 			{
 
-				int exve = execve(args[0], args, envp); /*NULL*/
+				int exve = execve(args[0], args, environ); /*NULL*/
 
 				if (exve == -1)
 				{
@@ -53,7 +53,7 @@ void _execve(char *line, char **envp) /* check if return void or int*/
 			}
 			else
 			{
-				_getpath(line, args, envp);
+				_getpath(line, args);
 			}
 		}
 		else
