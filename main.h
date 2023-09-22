@@ -26,17 +26,6 @@ char *_getenv(char *path_token, char **args);
 void _getpath(char *line, char **args, char **av, int linenumber);
 bool _isexec(char **args);
 int is_input(void);
-
 extern char **environ;
-typedef struct info
-{
-	char *arg;
-	char *argv;
-	int status;
-	int argc;
-	int err_num;
-	char *path;
 
-
-} info_t;
 #endif /*MAIN_H*/
