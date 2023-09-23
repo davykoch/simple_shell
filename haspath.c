@@ -3,6 +3,7 @@
  * _haspath - checks if has path
  *	@args: arguments
  * @envp: environment var
+ * @line: getline line
  * Return: void
  */
 void _haspath(char **args, char **envp, char *line)

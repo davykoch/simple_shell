@@ -1,7 +1,8 @@
 #include "main.h"
 /**
- *
- *
+ * free_args - free args
+ * @args: arguments to be freed
+ * Return: void
  */
 void free_args(char **args)
 {
