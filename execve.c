@@ -30,17 +30,7 @@ void _execve(char *line, char **av, int linenumber, char **envp)
 		{
 			if (strchr(args[0], '/') != NULL)
 			{
-				if (access(args[0], X_OK) == 0)
-				{
-
-					if ((execve(args[0], args, envp)) == -1)
-					{
-						perror("error -access");
-						free_args(args);
-						free(line);
-						exit(EXIT_FAILURE);
-					}
-				}
+				_haspath(args, envp, line);
 			}
 			else
 			{

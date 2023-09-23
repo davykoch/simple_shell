@@ -42,6 +42,7 @@ int _spacestrtok(char *line, char **args);
 
 void _parentpid(pid_t pid);
 void free_args(char **args);
+void _haspath(char **args, char **envp, char *line);
 
 
 
