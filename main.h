@@ -14,22 +14,37 @@
 #include <stdbool.h>
 
 extern char **environ;
+
 void _execve(char *line, char **av, int linenumber, char **envp);
+
 void _execve1(char *line, char **av, int linenumber, char **envp);
+
 /*string functions*/
 char *_strdup(const char *str);
+
 char *_strcpy(char *dest, char *src);
+
 int _strcmp(char *s1, char *s2);
+
 char *_strcat(char *dest, char *src);
+
 int _strlen(char *s);
+
 char *_getenv(char *path_token, char **args);
 
 void _getpath(char *line, char **args, char **av, int linenumber, char **envp);
+
 bool _isexec(char **args);
+
 int is_input(void);
 
 int _spacestrtok(char *line, char **args);
+
 void _parentpid(pid_t pid);
+void free_args(char **args);
+void _haspath(char **args, char **envp, char *line);
+
+
 
 
 #endif /*MAIN_H*/
