@@ -1,7 +1,9 @@
 #include "main.h"
 /**
- *
- *
+ * _spacestrtok - tokenizes strings
+ * @line: string to tokenize
+ * @args: string arguments
+ * Return: count
  */
 int _spacestrtok(char *line, char **args)
 {

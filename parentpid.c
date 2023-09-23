@@ -1,7 +1,7 @@
 #include "main.h"
 /**
-*
-*
+* _parentpid - prints pid
+* @pid: process id
 */
 void _parentpid(pid_t pid)
 {
