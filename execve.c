@@ -10,6 +10,7 @@
 void _execve(char *line, char **av, int linenumber, char **envp)
 {
 	char *args[64]; /* check*/
+
 	pid_t pid;
 
 	int arg_count = _spacestrtok(line, args);
@@ -21,24 +22,30 @@ void _execve(char *line, char **av, int linenumber, char **envp)
 		if (pid == -1)
 		{
 			perror("error -fork");
+			free_args(args);
 			free(line);
 			exit(EXIT_FAILURE);
 		}
 		else if (pid == 0) /* sucessfull*/
 		{
-			if (access(args[0], X_OK) == 0)
+			if (strchr(args[0], '/') != NULL)
 			{
-				if ((execve(args[0], args, envp)) == -1)
+				if (access(args[0], X_OK) == 0)
 				{
-					perror("error -access");
 
-					free(line);
-					exit(EXIT_FAILURE);
+					if ((execve(args[0], args, envp)) == -1)
+					{
+						perror("error -access");
+						free_args(args);
+						free(line);
+						exit(EXIT_FAILURE);
+					}
 				}
 			}
 			else
 			{
 				_getpath(line, args, av, linenumber, envp);
+				free_args(args);
 			}
 		}
 		else

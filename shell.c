@@ -1,7 +1,25 @@
 #include "main.h"
 /**
-  * is_input - checks for interactive
-  * Return: integer value
+ *
+ *
+ */
+void free_args(char **args)
+{
+	int i;
+
+	if (args == NULL)
+		return;
+
+	for (i = 0; args[i] != NULL; i++)
+	{
+		free(args[i]);
+	}
+
+	free(args);
+}
+/**
+ * is_input - checks for interactive
+ * Return: integer value
  */
 int is_input(void)
 {
@@ -16,22 +34,24 @@ int is_input(void)
 	}
 }
 /**
-* main - its the main shell
-* @ac: argument count
-* @av: argument vector
-* @envp: environment variable
-* Return: 0 on success
-*/
+ * main - its the main shell
+ * @ac: argument count
+ * @av: argument vector
+ * @envp: environment variable
+ * Return: 0 on success
+ */
 int main(int ac, char **av, char **envp)
 {
 
 	size_t len = 0;
 	ssize_t read;
 	int from_pipe;
+
 	int linenumber = 0;
 
 	char *line = NULL; /* stores string from cmd line*/
-	(void) ac;
+
+	(void)ac;
 	from_pipe = is_input();
 	while (1) /*check*/
 	{

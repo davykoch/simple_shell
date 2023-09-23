@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * _getpath - runs excve
+ * _getpath - runs excve if no path entered by user
  * @line: line read
  * @args: args from getline
  * @av: argument vector
@@ -35,7 +35,7 @@ void _getpath(char *line, char **args, char **av, int linenumber, char **envp)
 	/*/ If we reach here, the command was not found in PATH*/
 	/*fprintf(stderr, "Command not found: %s\n", args[0]);*/
 	/*perror("command not found");*/
-	 fprintf(stderr, "%s: %d: %s: not found\n", av[0], linenumber, args[0]);
+	fprintf(stderr, "%s: %d: %s: not found\n", av[0], linenumber, args[0]);
 
 	free(line);
 	exit(EXIT_FAILURE);
