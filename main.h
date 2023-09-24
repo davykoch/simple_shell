@@ -44,6 +44,8 @@ void _parentpid(pid_t pid);
 void free_args(char **args);
 void _haspath(char **args, char **envp, char *line);
 
+int _myexit(char **args);
+void _fork(char **args, char *line, char **av, int linenumber, char **envp);
 
 
 
