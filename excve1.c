@@ -8,14 +8,9 @@
  */
 void _execve1(char *line, char **av, int linenumber, char **envp)
 {
-	/* handle exit*/
-	if (strcmp(line, "exit") == 0)
-	{
-		free(line);
-		exit(EXIT_SUCCESS); /* Exit the shell*/
-	}
+	
 	/*handle env*/
-	else if (strcmp(line, "env") == 0)
+	if (strcmp(line, "env") == 0)
 	{
 		/* Handle the "env" command by printing the environment variables*/
 		char **env = environ;
@@ -28,7 +23,6 @@ void _execve1(char *line, char **av, int linenumber, char **envp)
 	}
 	else
 	{
-
 		_execve(line, av, linenumber, envp);
 	}
 }

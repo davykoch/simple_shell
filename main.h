@@ -42,9 +42,31 @@ int _spacestrtok(char *line, char **args);
 
 void _parentpid(pid_t pid);
 void free_args(char **args);
-void _haspath(char **args, char **envp, char *line);
+void _haspath(char **args, char **envp, char *line, info_t info);
+
+#define MAX_ARGS 64;
+
+/**
+* struct info - infor to be sent to all functions
+*
+*/
+typedef struct info
+{
 
 
+} info_t;
+
+
+/**
+* builtin - checks biult in func
+*
+*/
+typedef struct builtin
+{
+	char *type;
+
+	int (*func)(info_t *);
+} builtin_table;
 
 
 #endif /*MAIN_H*/

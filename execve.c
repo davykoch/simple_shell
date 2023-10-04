@@ -7,7 +7,7 @@
  * @envp: environment variable
  * Return: void
  */
-void _execve(char *line, char **av, int linenumber, char **envp)
+void _execve(char *line, char **av, int linenumber, char **envp, info_t info)
 {
 	char *args[64]; /* check*/
 
@@ -17,6 +17,12 @@ void _execve(char *line, char **av, int linenumber, char **envp)
 
 	if (arg_count > 0)
 	{
+		if (strcmp(args[0], "exit") == 0)
+		{
+			int exit_status = my_exit(info);
+			exit(exit_status);
+		}
+
 		args[arg_count] = NULL;
 		pid = fork(); /* child process*/
 		if (pid == -1)
@@ -41,6 +47,15 @@ void _execve(char *line, char **av, int linenumber, char **envp)
 		else
 		{
 			_parentpid(pid);
+		}
+	}
+	else
+	{
+		/* handle exit*/
+		if (strcmp(line, "exit") == 0)
+		{
+			free(line);
+			exit(EXIT_SUCCESS); /* Exit the shell*/
 		}
 	}
 }
