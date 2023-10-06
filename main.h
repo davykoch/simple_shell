@@ -38,21 +38,23 @@ bool _isexec(char **args);
 
 int is_input(void);
 
-int _spacestrtok(char *line, char **args);
+int _spacestrtok(info_t inf, char **args);
 
 void _parentpid(pid_t pid);
 void free_args(char **args);
 void _haspath(char **args, char **envp, char *line, info_t info);
 
 #define MAX_ARGS 64;
-
+#define INFO_INIT \
+{NULL}
 /**
 * struct info - infor to be sent to all functions
 *
 */
 typedef struct info
 {
-
+	char *line;
+	
 
 } info_t;
 

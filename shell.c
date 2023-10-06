@@ -1,9 +1,9 @@
 #include "main.h"
 /**
- * free_args - free args
- * @args: arguments to be freed
- * Return: void
- */
+* free_args - free args
+* @args: arguments to be freed
+* Return: void
+*/
 void free_args(char **args)
 {
 	int i;
@@ -19,9 +19,9 @@ void free_args(char **args)
 	free(args);
 }
 /**
- * is_input - checks for interactive
- * Return: integer value
- */
+* is_input - checks for interactive
+* Return: integer value
+*/
 int is_input(void)
 {
 
@@ -35,18 +35,23 @@ int is_input(void)
 	}
 }
 /**
- * main - its the main shell
- * @ac: argument count
- * @av: argument vector
- * @envp: environment variable
- * Return: 0 on success
- */
+* main - its the main shell
+* @ac: argument count
+* @av: argument vector
+* @envp: environment variable
+* Return: 0 on success
+*/
 int main(int ac, char **av, char **envp)
 {
-
+	info_t *p_info;
 	size_t len = 0;
 	ssize_t read;
 	int from_pipe;
+
+
+	p_info = malloc(sizeof(info_t));
+	if (p_info == NULL)
+		return (NULL);
 
 	int linenumber = 0;
 
@@ -77,6 +82,7 @@ int main(int ac, char **av, char **envp)
 				exit(EXIT_FAILURE);
 			}
 		}
+		p_info->line = line;
 		if (line[read - 1] == '\n')
 			line[read - 1] = '\0';
 		_execve1(line, av, linenumber, envp);
