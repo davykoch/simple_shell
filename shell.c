@@ -43,19 +43,20 @@ int is_input(void)
 */
 int main(int ac, char **av, char **envp)
 {
-	info_t *p_info;
-	size_t len = 0;
-	ssize_t read;
+	/* info_t *p_info; */
+	 info_t p_info[] = { INFO_INIT };
+	size_t size = 0;/*len*/
+	ssize_t input; /*what fgets stores to*//*changed from line*/
 	int from_pipe;
 
 
-	p_info = malloc(sizeof(info_t));
+	/* p_info = malloc(sizeof(info_t));
 	if (p_info == NULL)
-		return (NULL);
+		return (NULL); */
 
 	int linenumber = 0;
 
-	char *line = NULL; /* stores string from cmd line*/
+	char *input = NULL; /* stores string from cmd line*/
 
 	(void)ac;
 	from_pipe = is_input();
@@ -63,30 +64,30 @@ int main(int ac, char **av, char **envp)
 	{
 		linenumber++;
 		if (from_pipe && isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "$ ", 2);
-		read = getline(&line, &len, stdin);
+			prompt();
+		read = getline(&input, &size, stdin);
 
 		if (read == -1)
 		{
-			if (feof(stdin))
+			if (feof(stdin))/*ctrl d*/
 			{
 				if (from_pipe && isatty(STDIN_FILENO))
-					write(STDOUT_FILENO, "\n", 1);
-				free(line);
+					_putchar("\n");
+				/* free(input); */
 				exit(EXIT_SUCCESS);
 			}
 			else
 			{
-				perror("cannot get line"); /* check */
-				free(line);
+				perror("cannot get input"); /* check */
+				/* free(input); */
 				exit(EXIT_FAILURE);
 			}
 		}
-		p_info->line = line;
-		if (line[read - 1] == '\n')
-			line[read - 1] = '\0';
-		_execve1(line, av, linenumber, envp);
+		p_info->input = input;
+		if (input[read - 1] == '\n')
+			input[read - 1] = '\0';
+		_execve1(av, linenumber, envp);
 	}
-	free(line);
+	/* free(line); */
 	return (0);
 }

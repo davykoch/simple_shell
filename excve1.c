@@ -6,23 +6,23 @@
  * @av: argument vector
  * @envp: environment variable
  */
-void _execve1(char *line, char **av, int linenumber, char **envp)
+void _execve1(info_t *p_info, char **av, int linenumber, char **envp)
 {
 	
 	/*handle env*/
-	if (strcmp(line, "env") == 0)
+	if (strcmp(p_info->input, "env") == 0)
 	{
 		/* Handle the "env" command by printing the environment variables*/
 		char **env = environ;
 
 		while (*env != NULL)
 		{
-			printf("%s\n", *env);
+			_putchar(env);
 			env++;
 		}
 	}
 	else
 	{
-		_execve(line, av, linenumber, envp);
+		_execve(av, linenumber, envp);
 	}
 }

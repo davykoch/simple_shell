@@ -15,9 +15,9 @@
 
 extern char **environ;
 
-void _execve(char *line, char **av, int linenumber, char **envp);
+void _execve(info_t *, char **, int , char **);
 
-void _execve1(char *line, char **av, int linenumber, char **envp);
+void _execve1(char **, int , char **);
 
 /*string functions*/
 char *_strdup(const char *str);
@@ -29,20 +29,28 @@ int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 
 int _strlen(char *s);
+/* myfunc */
+int _tokenize(char *string, char *delim);
 
-char *_getenv(char *path_token, char **args);
 
-void _getpath(char *line, char **args, char **av, int linenumber, char **envp);
 
-bool _isexec(char **args);
+
+
+
+int _putchar(const char );
+char *_getenv(char *, char **);
+
+void _getpath(info_t *, char **, char **, int, char **);
+
+bool _isexec(char **);
 
 int is_input(void);
 
-int _spacestrtok(info_t inf, char **args);
+int _spacestrtok(info_t *, char **);
 
-void _parentpid(pid_t pid);
-void free_args(char **args);
-void _haspath(char **args, char **envp, char *line, info_t info);
+void _parentpid(pid_t);
+void free_args(char **);
+void _haspath(info_t *, char **, char **);
 
 #define MAX_ARGS 64;
 #define INFO_INIT \
@@ -53,8 +61,7 @@ void _haspath(char **args, char **envp, char *line, info_t info);
 */
 typedef struct info
 {
-	char *line;
-	
+	char *input;	
 
 } info_t;
 

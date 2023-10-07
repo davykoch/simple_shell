@@ -1,12 +1,13 @@
 #include "main.h"
 /**
  * _haspath - checks if has path
+ * @p_info: all info
  *	@args: arguments
  * @envp: environment var
  * @line: getline line
  * Return: void
  */
-void _haspath(char **args, char **envp, char *line)
+void _haspath(info_t *p_info, char **args, char **envp)
 {
 	if (access(args[0], X_OK) == 0)
 	{
@@ -15,7 +16,7 @@ void _haspath(char **args, char **envp, char *line)
 		{
 			perror("error -access");
 			free_args(args);
-			free(line);
+			/* free(p_info->input); */
 			exit(EXIT_FAILURE);
 		}
 	}

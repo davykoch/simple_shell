@@ -1,60 +1,61 @@
 #include "main.h"
 /**
- * _execve - calls progs
- * @line:string input by user
- * @av: argument vector
- * @linenumber: line number of the line read
- * @envp: environment variable
- * Return: void
- */
-void _execve(char *line, char **av, int linenumber, char **envp, info_t info)
+* _execve - calls progs
+* @p_info:string input by user
+* @av: argument vector
+* @linenumber: line number of the line read
+* @envp: environment variable
+* Return: void
+*/
+void _execve(info_t *p_info, char **av, int linenumber, char **envp)
 {
 	char *args[64]; /* check*/
 
-	pid_t pid;
+	pid_t cpid;
 
-	int arg_count = _spacestrtok(line, args);
+	int arg_count = _spacestrtok(p_info, args);
 
 	if (arg_count > 0)
 	{
 		if (strcmp(args[0], "exit") == 0)
 		{
 			int exit_status = my_exit(info);
+
 			exit(exit_status);
 		}
 
 		args[arg_count] = NULL;
-		pid = fork(); /* child process*/
-		if (pid == -1)
+		cpid = fork(); /* child process*/
+		if (cpid == -1)
 		{
 			perror("error -fork");
 			free_args(args);
-			free(line);
+			/* free(input); */
 			exit(EXIT_FAILURE);
 		}
-		else if (pid == 0) /* sucessfull*/
+		else if (cpid == 0) /* sucessfull*/
 		{
 			if (strchr(args[0], '/') != NULL)
 			{
-				_haspath(args, envp, line);
+				_haspath(args, envp, p_info);
 			}
 			else
 			{
-				_getpath(line, args, av, linenumber, envp);
+				_getpath(p_info, args, av, linenumber, envp);
 				free_args(args);
 			}
 		}
 		else
 		{
-			_parentpid(pid);
+			_parentpid(cpid);
 		}
 	}
 	else
 	{
 		/* handle exit*/
-		if (strcmp(line, "exit") == 0)
+		if (strcmp(p_info->input, "exit") == 0)
 		{
-			free(line);
+			/* free(input); */
 			exit(EXIT_SUCCESS); /* Exit the shell*/
 		}
 	}

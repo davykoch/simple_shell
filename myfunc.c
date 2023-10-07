@@ -7,7 +7,7 @@
 *			1 if builtin found but not successful,
 *			-2 if builtin signals exit()
 */
-int find_builtin(info_t *info)
+int find_builtin(info_t *p_info)
 {
 	int i;
 
