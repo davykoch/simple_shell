@@ -5,7 +5,7 @@
  * @args: string arguments
  * Return: count
  */
-int _spacestrtok(info_t *p_info, char **args)
+int _spacestrtok(info_t *info, char **args)
 {
 	char *delim = " ";
 

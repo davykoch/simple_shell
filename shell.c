@@ -44,15 +44,17 @@ int is_input(void)
 int main(int ac, char **av, char **envp)
 {
 	/* info_t *p_info; */
-	 info_t p_info[] = { INFO_INIT };
+	info_t info[] = { INFO_INIT };
 	size_t size = 0;/*len*/
 	ssize_t input; /*what fgets stores to*//*changed from line*/
 	int from_pipe;
 
 
-	/* p_info = malloc(sizeof(info_t));
-	if (p_info == NULL)
-		return (NULL); */
+	/**
+	 *  p_info = malloc(sizeof(info_t));
+	*	if (p_info == NULL)
+	*	return (NULL);
+	*/
 
 	int linenumber = 0;
 
@@ -62,6 +64,26 @@ int main(int ac, char **av, char **envp)
 	from_pipe = is_input();
 	while (1) /*check*/
 	{
+		if (ac == 2)
+	{
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
+		{
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
+				exit(127);
+			}
+			return (EXIT_FAILURE);
+		}
+		info->readfd = fd;
+	}
 		linenumber++;
 		if (from_pipe && isatty(STDIN_FILENO))
 			prompt();
