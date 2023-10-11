@@ -110,3 +110,4 @@ int _myexit(info_t *info)
 	 return 0;/* exit(0); */
 	}
 }
+/*check*/
