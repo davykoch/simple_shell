@@ -7,7 +7,7 @@
 * @envp: environment variable
 * Return: void
 */
-void _execve(info_t *p_info, char **av, int linenumber, char **envp)
+void _execve(info_t *info, char **av, int linenumber, char **envp)
 {
 	char *args[64]; /* check*/
 

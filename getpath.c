@@ -8,10 +8,10 @@
  * @envp: environment variable
  * Return:void
  */
-void _getpath(info_t *p_info, char **args, char **av, int linenumber, char **envp)
+void _getpath(info_t *info, char **args, char **av, int linenumber, char **envp)
 {
 	char *path = getenv("PATH");
-	char *path_token = strtok(path, ":");/*custom?*/
+	char *path_token = _strtok(path, ":");/*custom?*/
 
 	while (path_token != NULL)
 	{

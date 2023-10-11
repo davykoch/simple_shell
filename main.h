@@ -15,6 +15,7 @@
 
 /* // Define the maximum number of arguments */
 #define MAX_ARGS 64
+extern char **environ;
 
 /* // Struct to hold information passed to functions*/
 /**
@@ -22,7 +23,7 @@
 */
 typedef struct info
 {
-	char *input;
+	char *input; /*line*/
 
 /*  // Add other members here if needed */
 } info_t;
