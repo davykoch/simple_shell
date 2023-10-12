@@ -1,11 +1,8 @@
 #include "main.h"
 /**
- * _execve1 - calls the prog and
- * @line: string input by user
- * @linenumber: line number of line read
- * @av: argument vector
- * @envp: environment variable
- */
+* _execve1 - calls the prog and
+* @info: struct with userdata
+*/
 void _execve1(info_t *info)
 {
 
@@ -21,10 +18,10 @@ void _execve1(info_t *info)
 			env++;
 		}
 	}
-	/* else if (input == '\0' || input == EOF)
+	else if (input == '\0' || input == EOF)
 	{
 		exit(EXIT_SUCCESS);
-	} */
+	}
 	else
 	{
 		_execve(&info, av, linenumber);

@@ -14,7 +14,7 @@
 #include <stdbool.h>
 
 /* // Define the maximum number of arguments */
-#define MAX_ARGS 64
+#define MAX_ARGS 1024
 extern char **environ;
 
 /* // Struct to hold information passed to functions*/
@@ -41,44 +41,46 @@ typedef struct liststr
 } list_t;
 
 
-
 /* // Function prototypes */
+/*prompt.c*/
+void prompt(void);
+/*putchar.c*/
+int _putchar(const char *c);
+/*hsh*/
+hsh(info_t info);
+/*myfunc.c*/
+void handle_hash(info_t info);
+int _myexit(info_t *info);
+void free_args(char **args);
+/*memoryfunc.c*/
+char *_memset(char *s, char b, unsigned int n)_memset();
 
-/* // Function to execute a command */
-void _execve(info_t *info, char **args, int linenumber, char **envp);
+/* execve.c*/
+void _execve(info_t *info);
 
-/* // Function to execute a command with specific arguments */
-void _execve1(char **args, int linenumber, char **envp);
+/* execve1.c */
+void _execve1(info_t info);
 
-/* // String manipulation functions */
+/* stringfunc.c*/
 char *_strdup(const char *str);
-
+char *_strcat(char *dest, char *src);
+char *_strchr(char *s, char c);
+/*stringfunc1.c*/
+int _strlen(char *s);
 char *_strcpy(char *dest, const char *src);
+int _strcmp(char *s1, char *s2);
+_atoi
 
-int _strcmp(const char *s1, const char *s2);
-
-char *_sttypedef struct liststr
-{
-	int num;
-
-	char *str;
-
-	struct liststr *next;
-} list_t;rcat(char *dest, const char *src);
-
-int _strlen(const char *s);
-
-/* // Function to tokenize a string */
-int _tokenize(char *string, char *delim);
-
-/* // Function to print a character */
-int _putchar(const char c);
-
-/* // Function to get an environment variable */
+/*spacestrtok.c */
+int _spacestrtok(info_t *info, char **args);
+/* haspath.c */
+void _haspath(info_t *info, char **args);
+/*getpath.c*/
+void _getpath(info_t *info, char **args);
+/*parentpid.c*/
+void _parentpid(pid_t cpid);
+/*getenv.c*/
 char *_getenv(const char *name, char **envp);
-
-/* // Function to get the PATH variable and populate info structure */
-void _getpath(info_t *info, char **args, char **av, int linenumber, char **envp);
 
 /* // Function to check if a command is executable */
 bool _isexec(char **args);
@@ -86,16 +88,8 @@ bool _isexec(char **args);
 /* // Function to check if there is input available */
 int is_input(void);
 
-/* // Function to tokenize a string with specific arguments */
-int _spacestrtok(info_t *info, char **args);
-
-/* // Function to get the parent process ID */
-void _parentpid(pid_t ppid);
-
 /* // Function to free memory allocated for arguments */
 void free_args(char **args);
 
-/* // Function to check if a path exists */
-void _haspath(info_t *info, char **args, char **envp);
 
 #endif /* MAIN_H */

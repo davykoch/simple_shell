@@ -7,11 +7,11 @@
   */
 char *_getenv(char *path_token, char **args)
 {
-	char *full_path = malloc(strlen(path_token) + strlen(args[0]) + 2);
+	char *full_path = malloc(_strlen(path_token) + _strlen(args[0]) + 2);
 	/* stdrup*/
 
-	strcpy(full_path, path_token);
-	strcat(full_path, "/");
-	strcat(full_path, args[0]);
+	_strcpy(full_path, path_token);
+	_strcat(full_path, "/");
+	_strcat(full_path, args[0]);
 	return (full_path);
 }

@@ -1,20 +1,22 @@
 #include "main.h"
 /**
- *
- *
- */
+*hsh -
+*
+*/
 hsh(info_t *info)
 {
 
 	/* linenumber++; */
 	/* size_t size = 0;	 */					/*len*/
 	/* ssize_t input;  *//*what fgets stores to*/ /*changed from line*/
-	char input[MAX_PROMPT];
-    ssize_t read;
-	int i = 0;
-	mem_set(input, 0, MAX_PROMPT);
+	char input[MAX_ARGS];
 
-	read = read(STDIN_FILENO, input, MAX_PROMPT);
+	ssize_t read;
+	int i = 0;
+
+	_memset(input, 0, MAX_ARGS);
+
+	read = read(STDIN_FILENO, input, MAX_ARGS);
 	/* read = getline(&input, &size, stdin); */
 
 	if (read == -1)
@@ -34,14 +36,14 @@ hsh(info_t *info)
 		}
 	}
 	while (input[i])
-	{
+	{/*remove new line char*/
 		if (input[read - 1] == '\n')
 			input[read - 1] = '\0';
 			i++;
 	}
 	handle_hash(input);/*myfunc.c*/
-	info->input = strdup(input);
-	/* // Free the input array after copying its contents to info->input */
+	info->input = _strdup(input);
+	/* Free the input array after copying its contents to info->input */
 	free(input);
 	if (info->input[0] == '\0')
 

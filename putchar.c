@@ -9,5 +9,5 @@
 */
 int _putchar(const char *c)
 {
-return (write(STDOUT_FILENO, &c, strlen(c)));
+return (write(STDOUT_FILENO, &c, _strlen(c)));
 }

@@ -1,19 +1,19 @@
 #include "main.h"
 /**
- * _execve - calls progs
- * @p_info:string input by user
- * @av: argument vector
- * @linenumber: line number of the line read
- * @envp: environment variable
- * Return: void
- */
-void _execve(info_t *info, char **av, int linenumber, char **envp)
+* _execve - calls progs
+* @p_info:string input by user
+* @av: argument vector
+* @linenumber: line number of the line read
+* @envp: environment variable
+* Return: void
+*/
+void _execve(info_t *info)
 {
 	char *args[] = {NULL, NULL} /* check*/
 
 	pid_t cpid;
 
-	int arg_count = _spacestrtok(info, args);
+	int arg_count = _spacestrtok(&info, args);
 
 	if (arg_count > 0)
 	{
@@ -35,31 +35,27 @@ void _execve(info_t *info, char **av, int linenumber, char **envp)
 		}
 		else if (cpid == 0) /* sucessfull*/
 		{
-			if (strchr(args[0], '/') != NULL)
+			if (_strchr(args[0], '/') != NULL)
 			{
-				_haspath(args, envp, p_info);
+				_haspath(info, args);
 			}
 			else
 			{
-				_getpath(p_info, args, av, linenumber, envp);
+				_getpath(p_info, args);
+				info->args = _strdup(args);
 				free_args(args);
 			}
 		}
 		else
 		{
-			wait(&(info->status));
-			if (WIFEXITED(info->status))
-			{
-				info->status = WEXITSTATUS(info->status);
-				if (info->status == 126)
-					print_error(info, "Permission denied\n");
-			}
+			_parentpid(cpid);
 		}
+
 	}
 	else
 	{
 		/* handle exit*/
-		if (strcmp(p_info->input, "exit") == 0)
+		if (_strcmp(p_info->input, "exit") == 0)
 		{
 			/* free(input); */
 			exit(EXIT_SUCCESS); /* Exit the shell*/

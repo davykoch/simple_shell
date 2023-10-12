@@ -8,7 +8,7 @@
  * @envp: environment variable
  * Return:void
  */
-void _getpath(info_t *info)
+void _getpath(info_t *info, char **args)
 {
 	char *path = getenv("PATH");
 	char *path_token = _strtok(path, ":");/*custom?*/

@@ -1,23 +1,5 @@
 #include "main.h"
-/**
- * free_args - free args
- * @args: arguments to be freed
- * Return: void
- */
-void free_args(char **args)
-{
-	int i;
 
-	if (args == NULL)
-		return;
-
-	for (i = 0; args[i] != NULL; i++)
-	{
-		free(args[i]);
-	}
-
-	free(args);
-}
 /**
  * is_input - checks for interactive
  * Return: integer value
