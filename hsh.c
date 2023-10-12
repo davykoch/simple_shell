@@ -33,7 +33,6 @@ hsh(info_t *info)
 			exit(EXIT_FAILURE);
 		}
 	}
-	
 	while (input[i])
 	{
 		if (input[read - 1] == '\n')
@@ -42,7 +41,10 @@ hsh(info_t *info)
 	}
 	handle_hash(input);/*myfunc.c*/
 	info->input = strdup(input);
-	if (input[0] == '\0')
+	/* // Free the input array after copying its contents to info->input */
+	free(input);
+	if (info->input[0] == '\0')
+
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);

@@ -1,15 +1,15 @@
 #include "main.h"
 /**
-* _execve - calls progs
-* @p_info:string input by user
-* @av: argument vector
-* @linenumber: line number of the line read
-* @envp: environment variable
-* Return: void
-*/
+ * _execve - calls progs
+ * @p_info:string input by user
+ * @av: argument vector
+ * @linenumber: line number of the line read
+ * @envp: environment variable
+ * Return: void
+ */
 void _execve(info_t *info, char **av, int linenumber, char **envp)
 {
-	char *args[64]; /* check*/
+	char *args[] = {NULL, NULL} /* check*/
 
 	pid_t cpid;
 
@@ -17,7 +17,7 @@ void _execve(info_t *info, char **av, int linenumber, char **envp)
 
 	if (arg_count > 0)
 	{
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
 			int exit_status = my_exit(info);
 
@@ -47,7 +47,13 @@ void _execve(info_t *info, char **av, int linenumber, char **envp)
 		}
 		else
 		{
-			_parentpid(cpid);
+			wait(&(info->status));
+			if (WIFEXITED(info->status))
+			{
+				info->status = WEXITSTATUS(info->status);
+				if (info->status == 126)
+					print_error(info, "Permission denied\n");
+			}
 		}
 	}
 	else

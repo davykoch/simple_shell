@@ -85,6 +85,7 @@ int main(int ac, char **av, char **envp)
 		prompt();
 		hsh(&info);
 		_execve1(&info);
-		return (0);
+		/* return (0); */
+		free(info->input);
 	}
 }
