@@ -21,6 +21,10 @@ void _execve1(info_t *info, char **av, int linenumber, char **envp)
 			env++;
 		}
 	}
+	/* else if (input == '\0' || input == EOF)
+	{
+		exit(EXIT_SUCCESS);
+	} */
 	else
 	{
 		_execve(&info, av, linenumber, envp);

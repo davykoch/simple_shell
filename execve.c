@@ -13,7 +13,7 @@ void _execve(info_t *info, char **av, int linenumber, char **envp)
 
 	pid_t cpid;
 
-	int arg_count = _spacestrtok(p_info, args);
+	int arg_count = _spacestrtok(info, args);
 
 	if (arg_count > 0)
 	{

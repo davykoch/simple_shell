@@ -111,3 +111,24 @@ int _myexit(info_t *info)
 	}
 }
 /*check*/
+/**
+ * handle_hash - check if string has
+ * comment (#) and voids it
+ * @info:struct containing string to be checked
+ *
+ */
+
+void handle_hash(info_t info)
+{
+	int k = 0;
+
+	while (comnd[k])
+	{
+		if (comnd[k] == '#')
+		{
+			comnd[k] = '\0';
+			break;
+		}
+		k++;
+	}
+}

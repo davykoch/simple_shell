@@ -45,8 +45,6 @@ int main(int ac, char **av, char **envp)
 {
 	/* info_t *p_info;-pointer */
 	info_t info[] = {INFO_INIT};
-	size_t size = 0;						/*len*/
-	ssize_t input; /*what fgets stores to*/ /*changed from line*/
 	int from_pipe;
 
 	/**
@@ -84,7 +82,9 @@ int main(int ac, char **av, char **envp)
 	}
 	while (1) /*check*/
 	{
+		prompt();
 		hsh(&info);
+		_execve1(&info);
 		return (0);
 	}
 }

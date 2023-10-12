@@ -4,5 +4,10 @@
 */
 void prompt(void)
 {
-	_putchar("$-")
+	if (from_pipe && isatty(STDIN_FILENO))
+	{
+		_putchar("$-");
+		/* fflush(stdout); */
+	}
+
 }
