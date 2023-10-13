@@ -56,7 +56,7 @@ int _myexit(info_t *info)
 	 * info->err_num = -1;
 	*return (-2);
 	*/
-	 return 0;/* exit(0); */
+	return (0);/* exit(0); */
 	}
 }
 /**

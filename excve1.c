@@ -14,16 +14,16 @@ void _execve1(info_t *info)
 
 		while (*env != NULL)
 		{
-			_putchar(env);
+			_putchar(*env);
 			env++;
 		}
 	}
-	else if (input == '\0' || input == EOF)
+	else if (info->input == '\0' || info->input == EOF)
 	{
 		exit(EXIT_SUCCESS);
 	}
 	else
 	{
-		_execve(&info, av, linenumber);
+		_execve(info);
 	}
 }

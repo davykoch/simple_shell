@@ -1,17 +1,13 @@
-#include "main.h"
 /**
  * _getpath - runs excve if no path entered by user
- * @line: line read
+ * @info: line read
  * @args: args from getline
- * @av: argument vector
- * @linenumber: line number of the line read
- * @envp: environment variable
  * Return:void
  */
 void _getpath(info_t *info, char **args)
 {
 	char *path = getenv("PATH");
-	char *path_token = _strtok(path, ":");/*custom?*/
+	char *path_token = strtok(path, ":");/*custom?*/
 
 	while (path_token != NULL)
 	{
@@ -19,7 +15,7 @@ void _getpath(info_t *info, char **args)
 
 		if (access(full_path, X_OK) == 0)/*can path be accessed*/
 		{
-			int exve = execve(full_path, arg);
+			int exve = execve(full_path, args);
 
 			if (exve == -1)
 			{
@@ -29,6 +25,7 @@ void _getpath(info_t *info, char **args)
 				exit(EXIT_FAILURE);
 			}
 		}
+		info->full_path = strdup(full_path);
 		free(full_path);
 		path_token = strtok(NULL, ":");/*adds delimiter*/
 	}

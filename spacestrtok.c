@@ -10,7 +10,7 @@ int _spacestrtok(info_t *info, char **args)
 	char *delim = " ";
 
 	int arg_count = 0;
-	char *token = strtok(p_info->input, delim); /*separate cmds singular*/
+	char *token = strtok(info->input, delim); /*separate cmds singular*/
 
 	while (token != NULL) /*free token free args some where*/
 	{

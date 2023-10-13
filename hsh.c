@@ -3,7 +3,7 @@
 *hsh -
 *
 */
-hsh(info_t *info)
+void hsh(info_t *info)
 {
 
 	/* linenumber++; */
@@ -16,7 +16,7 @@ hsh(info_t *info)
 
 	_memset(input, 0, MAX_ARGS);
 
-	read = read(STDIN_FILENO, input, MAX_ARGS);
+	read = read(STDIN_FILENO, info->input, MAX_ARGS);
 	/* read = getline(&input, &size, stdin); */
 
 	if (read == -1)

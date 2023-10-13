@@ -2,9 +2,6 @@
 /**
 * _execve - calls progs
 * @p_info:string input by user
-* @av: argument vector
-* @linenumber: line number of the line read
-* @envp: environment variable
 * Return: void
 */
 void _execve(info_t *info)
@@ -19,7 +16,7 @@ void _execve(info_t *info)
 	{
 		if (_strcmp(args[0], "exit") == 0)
 		{
-			int exit_status = my_exit(info);
+			int exit_status = _myexit(&info);
 
 			exit(exit_status);
 		}
@@ -41,7 +38,7 @@ void _execve(info_t *info)
 			}
 			else
 			{
-				_getpath(p_info, args);
+				_getpath(p_info, args);/*execute*/
 				info->args = _strdup(args);
 				free_args(args);
 			}

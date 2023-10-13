@@ -27,6 +27,7 @@ typedef struct info
 
 /*  // Add other members here if needed */
 } info_t;
+#define INFO_INIT { NULL }
 
 /**
 *
@@ -44,32 +45,33 @@ typedef struct liststr
 /* // Function prototypes */
 /*prompt.c*/
 void prompt(void);
+int is_input(void);
 /*putchar.c*/
 int _putchar(const char *c);
 /*hsh*/
-hsh(info_t info);
+void hsh(info_t *info);
 /*myfunc.c*/
-void handle_hash(info_t info);
+void handle_hash(info_t *info);
 int _myexit(info_t *info);
 void free_args(char **args);
 /*memoryfunc.c*/
-char *_memset(char *s, char b, unsigned int n)_memset();
+char *_memset(char *s, char b, unsigned int n);
 
 /* execve.c*/
 void _execve(info_t *info);
 
 /* execve1.c */
-void _execve1(info_t info);
+void _execve1(info_t *info);
 
 /* stringfunc.c*/
 char *_strdup(const char *str);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *s, char c);
 /*stringfunc1.c*/
-int _strlen(char *s);
-char *_strcpy(char *dest, const char *src);
+int _strlen(const char *s);
+char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
-_atoi
+/* _atoi */
 
 /*spacestrtok.c */
 int _spacestrtok(info_t *info, char **args);
