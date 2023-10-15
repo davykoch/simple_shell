@@ -10,13 +10,13 @@ void _execve(info_t *info)
 
 	pid_t cpid;
 
-	int arg_count = _spacestrtok(&info, args);
+	int arg_count = _spacestrtok(info, args);
 
 	if (arg_count > 0)
 	{
 		if (_strcmp(args[0], "exit") == 0)
 		{
-			int exit_status = _myexit(&info);
+			int exit_status = _myexit(info);
 
 			exit(exit_status);
 		}
