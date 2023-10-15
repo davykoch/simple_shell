@@ -6,7 +6,7 @@
 */
 void _execve(info_t *info)
 {
-	char *args[] = {NULL, NULL} /* check*/
+	char *args[] = {NULL, NULL}; /* check*/
 
 	pid_t cpid;
 

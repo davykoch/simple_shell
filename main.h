@@ -17,17 +17,6 @@
 #define MAX_ARGS 1024
 extern char **environ;
 
-/* // Struct to hold information passed to functions*/
-/**
-*
-*/
-typedef struct info
-{
-	char *input; /*line*/
-
-/*  // Add other members here if needed */
-} info_t;
-#define INFO_INIT { NULL }
 
 /**
 *
@@ -40,6 +29,19 @@ typedef struct liststr
 
 	struct liststr *next;
 } list_t;
+/* // Struct to hold information passed to functions*/
+/**
+*
+*/
+typedef struct info
+{
+	char *input; /*line*/
+	list_t *env;
+/*  // Add other members here if needed */
+} info_t;
+#define INFO_INIT { NULL, NULL}
+
+
 
 
 /* // Function prototypes */

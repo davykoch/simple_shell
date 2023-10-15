@@ -10,6 +10,7 @@
 int main(void)
 {
 	int linenumber = 0;
+	
 
 	info_t info[] = { INFO_INIT };
 	
