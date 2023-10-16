@@ -18,7 +18,7 @@ void _execve1(info_t *info)
 			env++;
 		}
 	}
-	else if (info->input == '\0' || info->input[0] == EOF)
+	else if (info->input[0] == '\0' || info->input[0] == EOF)
 	{
 		exit(EXIT_SUCCESS);
 	}
