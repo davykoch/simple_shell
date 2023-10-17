@@ -1,60 +1,61 @@
 #include "main.h"
 /**
- * _execve - calls progs
- * @line:string input by user
- * @av: argument vector
- * @linenumber: line number of the line read
- * @envp: environment variable
- * Return: void
- */
-void _execve(char *line, char **av, int linenumber, char **envp, info_t info)
+* _execve - calls progs
+* @p_info:string input by user
+* Return: void
+*/
+void _execve(info_t *info)
 {
 	char *args[64]; /* check*/
+	int arg_count;/*check*/
+	pid_t cpid;
 
-	pid_t pid;
-
-	int arg_count = _spacestrtok(line, args);
+	arg_count = _spacestrtok(info, args);
 
 	if (arg_count > 0)
 	{
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
-			int exit_status = my_exit(info);
+			int exit_status = _myexit(info);
+
 			exit(exit_status);
 		}
 
 		args[arg_count] = NULL;
-		pid = fork(); /* child process*/
-		if (pid == -1)
+		args[0] = info->input;
+		cpid = fork(); /* child process*/
+		if (cpid == -1)
 		{
 			perror("error -fork");
 			free_args(args);
-			free(line);
+			/* free(input); */
 			exit(EXIT_FAILURE);
 		}
-		else if (pid == 0) /* sucessfull*/
+		else if (cpid == 0) /* sucessfull*/
 		{
-			if (strchr(args[0], '/') != NULL)
-			{
-				_haspath(args, envp, line);
+			if (_strchr(args[0], '/') != NULL)
+			{/*checks if input has directory*/
+				_haspath(args);/*check*/
 			}
 			else
 			{
-				_getpath(line, args, av, linenumber, envp);
+				_getpath(info, args);/*execute*/
+				
 				free_args(args);
 			}
 		}
 		else
 		{
-			_parentpid(pid);
+			_parentpid(cpid);
 		}
+
 	}
 	else
 	{
 		/* handle exit*/
-		if (strcmp(line, "exit") == 0)
+		if (_strcmp(info->input, "exit") == 0)
 		{
-			free(line);
+			/* free(input); */
 			exit(EXIT_SUCCESS); /* Exit the shell*/
 		}
 	}

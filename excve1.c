@@ -1,28 +1,30 @@
 #include "main.h"
 /**
  * _execve1 - calls the prog and
- * @line: string input by user
- * @linenumber: line number of line read
- * @av: argument vector
- * @envp: environment variable
+ * @info: struct with userdata
  */
-void _execve1(char *line, char **av, int linenumber, char **envp)
+void _execve1(info_t *info)
 {
-	
+
 	/*handle env*/
-	if (strcmp(line, "env") == 0)
+	if (_strcmp(info->input, "env") == 0)
 	{
 		/* Handle the "env" command by printing the environment variables*/
 		char **env = environ;
 
 		while (*env != NULL)
 		{
-			printf("%s\n", *env);
+			_putchar(*env);
 			env++;
 		}
 	}
+	else if (_strcmp(info->input, "exit") == 0)
+	{
+		/* free(input); */
+		exit(EXIT_SUCCESS); /* Exit the shell*/
+	}
 	else
 	{
-		_execve(line, av, linenumber, envp);
+		_execve(info);
 	}
 }

@@ -1,8 +1,8 @@
 #include "main.h"
 /**
-* _parentpid - prints pid
-* @pid: process id
-*/
+ * _parentpid - prints pid
+ * @pid: process id
+ */
 void _parentpid(pid_t pid)
 {
 	pid_t wpid;
@@ -22,3 +22,13 @@ void _parentpid(pid_t pid)
 		}
 	}
 }
+/**
+ *wait(&(info->status));
+ *		if (WIFEXITED(info->status))
+ *		{
+ *	info->status = WEXITSTATUS(info->status);
+ *if (info->status == 126)
+ *	print_error(info, "Permission denied\n");
+ *}
+ *}
+ */

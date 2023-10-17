@@ -1,91 +1,33 @@
+#include "main.h"
 /**
-* find_builtin - finds a builtin command
-* @info: the parameter & return info struct
+* handle_hash - check if string has
+* comment (#) and voids it
+* @info:struct containing string to be checked
 *
-* Return: -1 if builtin not found,
-*			0 if builtin executed successfully,
-*			1 if builtin found but not successful,
-*			-2 if builtin signals exit()
 */
-int find_builtin(info_t *info)
+
+void handle_hash(info_t *info)
 {
-	int i;
+	int i = 0;
 
-	/*built_in_ret = -1;*/
-	builtin_table builtintbl[] = {
-		{"exit", _myexit},
-		{NULL, NULL}
-	};
-
-	for (i = 0; builtintbl[i].type; i++)
+	while (info->input[i])
 	{
-		if (strcmp(info->argv[0], builtintbl[i].type) == 0)
+		if (info->input[i] == '#')
 		{
-			 return (builtintbl[i].func(info));
+			info->input[i] = '\0';
+			break;
 		}
-	}
-	return (-1);
-}
-
-/**
-* find_cmd - finds a command in PATH
-* @info: the parameter & return info struct
-*
-* Return: void
-*/
-void find_cmd(info_t *info)
-{
-	char *path = NULL;
-
-	int i, k;
-
-	info->path = info->argv[0];
-	if (info->linecount_flag == 1)
-	{
-		info->line_count++;
-		info->linecount_flag = 0;
-	}
-	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
-			k++;
-	if (!k)
-		return;
-
-	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
-	if (path)
-	{
-		info->path = path;
-		fork_cmd(info);
-	}
-	else
-	{
-		if ((interactive(info) || _getenv(info, "PATH=")
-			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
-			fork_cmd(info);
-		else if (*(info->arg) != '\n')
-		{
-			info->status = 127;
-			print_error(info, "not found\n");
-		}
+		i++;
 	}
 }
-
-
-/**
-* _myexit - exits the shell
-* @info: Structure containing potential arguments. Used to maintain
-*          constant function prototype.
-*  Return: exits with a given exit status
-*         (0) if info.argv[0] != "exit"
-*/
 int _myexit(info_t *info)
 {
-	int exitcheck;
+	int e_status;
 
-	if (info->argv[1] != NULL) /* If there is an exit argument */
+	if (info->args[1] != NULL) /* If there is an exit argument */
 	{
-		exitcheck = atoi(info->argv[1]);
-		return exit_status;
+		e_status = atoi(info->args[1]);
+		return (e_status);
 		/**
 		 * if (exitcheck == -1)
 		*{
@@ -107,6 +49,25 @@ int _myexit(info_t *info)
 	 * info->err_num = -1;
 	*return (-2);
 	*/
-	 return 0;/* exit(0); */
+	 return (0);/* exit(0); */
 	}
+}
+/**
+* free_args - free args
+* @args: arguments to be freed
+* Return: void
+*/
+void free_args(char **args)
+{
+	int i;
+
+	if (args == NULL)
+		return;
+
+	for (i = 0; args[i] != NULL; i++)
+	{
+		free(args[i]);
+	}
+
+	free(args);
 }

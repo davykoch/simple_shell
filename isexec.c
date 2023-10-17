@@ -16,9 +16,9 @@ bool _isexec(char **args)
 		char *efull_path = malloc(strlen(epath_token) + strlen(args[0]) + 2);
 		/* stdrup*/
 
-		strcpy(efull_path, epath_token);
-		strcat(efull_path, "/");
-		strcat(efull_path, args[0]);
+		_strcpy(efull_path, epath_token);
+		_strcat(efull_path, "/");
+		_strcat(efull_path, args[0]);
 
 		if (access(efull_path, X_OK) == 0)
 		{
