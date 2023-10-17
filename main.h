@@ -86,13 +86,13 @@ int _atoi(char *s);
 /*spacestrtok.c */
 int _spacestrtok(info_t *info, char **args);
 /* haspath.c */
-void _haspath(char **args);
+void _haspath(info_t *info);
 /*getpath.c*/
-void _getpath(info_t *info, char **args);
+void _getpath(info_t *info);
 /*parentpid.c*/
 void _parentpid(pid_t cpid);
 /*getenv.c*/
-char *_getenv(char *path_token, char **args);
+char *_getenv(char *path_token, info_t *info);
 
 /* // Function to check if a command is executable */
 bool _isexec(char **args);

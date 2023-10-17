@@ -5,7 +5,7 @@
  * @args: args from getline
  * Return:void
  */
-void _getpath(info_t *info, char **args)
+void _getpath(info_t *info)
 {
 	
 	char *path = getenv("PATH");
@@ -14,11 +14,11 @@ void _getpath(info_t *info, char **args)
 
 	while (path_token != NULL)
 	{
-		char *full_path = _getenv(path_token, args);
+		char *full_path = _getenv(path_token, info);
 
 		if (access(full_path, X_OK) == 0)/*can path be accessed*/
 		{
-			int exve = execve(full_path, args, environ);
+			int exve = execve(full_path, info->args, environ);
 
 			if (exve == -1)
 			{
@@ -37,6 +37,6 @@ void _getpath(info_t *info, char **args)
 	/*perror("command not found");*/
 	/*error should be sent to _Exit() */
 	/* fprintf(stderr, "%s: %d: %s: not found\n",/ *  av[0], * / / * linenumber * /, args[0]); */
-	/* free(info->input); */
+	free(info->input);
 	exit(EXIT_FAILURE);
 }

@@ -10,7 +10,7 @@ void hsh(info_t *info, int from_pipe)
 	/* size_t size = 0;	 */						   /*len*/
 	/* ssize_t input;  */ /*what fgets stores to*/ /*changed from line*/
 	/* static char input[MAX_ARGS]; */
-	static char *input = NULL; 
+	char *input = NULL; 
 	size_t len = 0;
 	ssize_t reead;
 	int i = 0;

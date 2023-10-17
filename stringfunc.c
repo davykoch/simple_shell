@@ -69,10 +69,9 @@ char *_strchr(char *s, char c)
 	return (NULL); /*Return NULL if 'c' is not found in the string*/
 }
 
-#include "main.h"
 /**
  * _erratoi - custom string-to-integer conversion with error handling
- * @s: the string to be converted
+ * @s: string to be converted
  * @error: a pointer to an integer for error information
  *
  * Return: integer value if conversion is successful, or INT_MIN/INT_MAX on error

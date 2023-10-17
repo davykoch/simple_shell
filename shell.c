@@ -4,7 +4,6 @@
 * main - its the main shell
 * @ac: argument count
 * @av: argument vector
-* @envp: environment variable
 * Return: 0 on success
 */
 int main(void)
