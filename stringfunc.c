@@ -59,14 +59,14 @@ char *_strcat(char *dest, char *src)
  */
 char *_strchr(char *s, char c)
 {
-    while (*s != '\0')
+	while (*s != '\0')
 	{
-        if (*s == c)
-            return s; /*Return a pointer to the first occurrence of 'c'*/
-        s++;
-    }
+		if (*s == c)
+			return (s); /*Return a pointer to the first occurrence of 'c'*/
+		s++;
+	}
 
-    return NULL; /*Return NULL if 'c' is not found in the string*/
+	return (NULL); /*Return NULL if 'c' is not found in the string*/
 }
 
 #include "main.h"
@@ -76,7 +76,7 @@ char *_strchr(char *s, char c)
  * @error: a pointer to an integer for error information
  *
  * Return: integer value if conversion is successful, or INT_MIN/INT_MAX on error
- * 
+ *
  * Error codes:
  *   0: No error
  *  -1: Empty string
@@ -86,61 +86,60 @@ char *_strchr(char *s, char c)
 int _erratoi(const char *s, int *error)
 {
 	int i = 0;
-    int digit;
-    int sign = 1;
-    int result = 0;
-	
-    if (s == NULL || *s == '\0')
+	int digit;
+	int sign = 1;
+	int result = 0;
+
+	if (s == NULL || *s == '\0')
 	{
-        if (error != NULL)
+		if (error != NULL)
 		{
-            *error = -1; 
-        }
-        return INT_MIN;
-    }
+			*error = -1; 
+		}
+		return (INT_MIN);
+	}
 	if (s[i] == '-')
 	{
-        sign = -1;
-        i++;
-    }
+		sign = -1;
+		i++;
+	}
 
-    while (s[i] != '\0')
+	while (s[i] != '\0')
 	{
-        if (s[i] < '0' || s[i] > '9')
+		if (s[i] < '0' || s[i] > '9')
 		{
-            if (error != NULL)
+			if (error != NULL)
 			{
-                *error = -2; 
-            }
-            return INT_MIN;
-        }
+				*error = -2;
+			}
+			return (INT_MIN);
+		}
 
-         digit = s[i] - '0';
+		digit = s[i] - '0';
 
-        if (sign == 1 && (result > INT_MAX / 10 || (result == INT_MAX / 10 && digit > INT_MAX % 10)))
+		if (sign == 1 && (result > INT_MAX / 10 || (result == INT_MAX / 10 && digit > INT_MAX % 10)))
 		{
-            if (error != NULL)
+			if (error != NULL)
 			{
-                *error = -3;
-            }
-            return (INT_MAX);
-        } else if (sign == -1 && (result < INT_MIN / 10 || (result == INT_MIN / 10 && digit > -(INT_MIN % 10))))
+				*error = -3;
+			}
+			return (INT_MAX);
+		} else if (sign == -1 && (result < INT_MIN / 10 || (result == INT_MIN / 10 && digit > -(INT_MIN % 10))))
 		{
-            if (error != NULL)
+			if (error != NULL)
 			{
-                *error = -3; 
-            }
-            return INT_MIN;
-        }
+				*error = -3; 
+			}
+			return (INT_MIN);
+		}
+		result = result * 10 + sign * digit;
+		i++;
+	}
 
-        result = result * 10 + sign * digit;
-        i++;
-    }
-
-    if (error != NULL)
+	if (error != NULL)
 	{
-        *error = 0;
-    }
+		*error = 0;
+	}
 
-    return (result);
+	return (result);
 }
