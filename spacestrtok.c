@@ -14,7 +14,7 @@ int _spacestrtok(info_t *info, char **args)
 
 	while (token != NULL) /*free token free args some where*/
 	{
-		args[arg_count++] = _strdup(token);
+		info->args[arg_count++] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	return (arg_count);

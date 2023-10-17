@@ -39,7 +39,6 @@ void _execve(info_t *info)
 			}
 			else
 			{
-				info->args = _strdup(args);
 				_getpath(info, args);/*execute*/
 				
 				free_args(args);

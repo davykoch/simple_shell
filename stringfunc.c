@@ -122,8 +122,8 @@ int _erratoi(const char *s, int *error)
 			{
                 *error = -3;
             }
-            return INT_MAX;
-        } else if (sign == -1 && (result < INT_MIN / 10 || (result == INT_MIN / 10 && digit > -(INT_MIN % 10)))
+            return (INT_MAX);
+        } else if (sign == -1 && (result < INT_MIN / 10 || (result == INT_MIN / 10 && digit > -(INT_MIN % 10))))
 		{
             if (error != NULL)
 			{
@@ -141,5 +141,5 @@ int _erratoi(const char *s, int *error)
         *error = 0;
     }
 
-    return result;
+    return (result);
 }
