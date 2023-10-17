@@ -5,7 +5,7 @@
  *	@args: arguments
  * Return: void
  */
-void _haspath(info_t *info, char **args)
+void _haspath(char **args)
 {
 	if (access(args[0], X_OK) == 0)
 	{

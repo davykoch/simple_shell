@@ -19,15 +19,18 @@ int is_input(void)
 
 /**
 * prompt - checks interactive and prints prompt
+* @info: all infor
 */
-void prompt(void)
+void prompt(info_t *info)
 {
 	int from_pipe;
 
 	from_pipe = is_input();
 	if (from_pipe && isatty(STDIN_FILENO))
 	{
+		info->from_pipe = _strdup(from_pipe);
 		_putchar("$-");
 		/* fflush(stdout); */
+		/* free(from_pipe);*check*/
 	}
 }

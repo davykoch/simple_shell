@@ -15,7 +15,7 @@ void _getpath(info_t *info, char **args)
 
 		if (access(full_path, X_OK) == 0)/*can path be accessed*/
 		{
-			int exve = execve(full_path, args);
+			int exve = execve(full_path, args, environ);
 
 			if (exve == -1)
 			{
@@ -25,16 +25,15 @@ void _getpath(info_t *info, char **args)
 				exit(EXIT_FAILURE);
 			}
 		}
-		info->full_path = strdup(full_path);
+		/* info->full_path = strdup(full_path); */
 		free(full_path);
-		path_token = strtok(NULL, ":");/*adds delimiter*/
+		path_token = _strtok(NULL, ":");/*adds delimiter*/
 	}
 	/*/ If we reach here, the command was not found in PATH*/
 	/*fprintf(stderr, "Command not found: %s\n", args[0]);*/
 	/*perror("command not found");*/
 	/*error should be sent to _Exit() */
-	fprintf(stderr, "%s: %d: %s: not found\n", av[0], linenumber, args[0]);
-
-	/* free(p_info->input); */
+	/* fprintf(stderr, "%s: %d: %s: not found\n",/ *  av[0], * / / * linenumber * /, args[0]); */
+	/* free(info->input); */
 	exit(EXIT_FAILURE);
 }
