@@ -7,10 +7,9 @@
 void _execve(info_t *info)
 {
 	char *args[] = {NULL, NULL}; /* check*/
-
+	int arg_count;/*check*/
 	pid_t cpid;
-
-	int arg_count = _spacestrtok(info, args);
+	int e_status;
 
 	if (arg_count > 0)
 	{
@@ -22,6 +21,7 @@ void _execve(info_t *info)
 		}
 
 		args[arg_count] = NULL;
+		args[0] = info->input;
 		cpid = fork(); /* child process*/
 		if (cpid == -1)
 		{
@@ -33,13 +33,14 @@ void _execve(info_t *info)
 		else if (cpid == 0) /* sucessfull*/
 		{
 			if (_strchr(args[0], '/') != NULL)
-			{
-				_haspath(info, args);
+			{/*checks if input has directory*/
+				_haspath(args);/*check*/
 			}
 			else
 			{
-				_getpath(p_info, args);/*execute*/
 				info->args = _strdup(args);
+				_getpath(info, args);/*execute*/
+				
 				free_args(args);
 			}
 		}
@@ -52,7 +53,7 @@ void _execve(info_t *info)
 	else
 	{
 		/* handle exit*/
-		if (_strcmp(p_info->input, "exit") == 0)
+		if (_strcmp(info->input, "exit") == 0)
 		{
 			/* free(input); */
 			exit(EXIT_SUCCESS); /* Exit the shell*/

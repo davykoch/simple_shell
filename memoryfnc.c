@@ -1,12 +1,12 @@
 #include "main.h"
 /**
- * add_node - adds a node to the start of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
- *
- * Return: size of list
- */
+* add_node - adds a node to the start of the list
+* @head: address of pointer to head node
+* @str: str field of node
+* @num: node index used by history
+*
+* Return: size of list
+*/
 list_t *add_node(list_t **head, const char *str, int num)
 {
 	list_t *new_head;
@@ -33,13 +33,13 @@ list_t *add_node(list_t **head, const char *str, int num)
 }
 
 /**
- * add_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
- *
- * Return: size of list
- */
+* add_node_end - adds a node to the end of the list
+* @head: address of pointer to head node
+* @str: str field of node
+* @num: node index used by history
+*
+* Return: size of list
+*/
 list_t *add_node_end(list_t **head, const char *str, int num)
 {
 	list_t *new_node, *node;
@@ -73,8 +73,11 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 	return (new_node);
 }
 /**
- * 
- * 
+* _memset - fill input with 0
+* @s: input
+* @b: the zero to be filled
+* @n: MAX_ARGS
+* Return: input full of char zero
 */
 char *_memset(char *s, char b, unsigned int n)
 {

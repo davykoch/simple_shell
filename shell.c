@@ -17,7 +17,7 @@ int main(void)
 	while (1) /*check*/
 	{
 		linenumber++;
-		prompt();
+		prompt(info);
 		hsh(info);
 		_execve1(info);
 		/* return (0); */

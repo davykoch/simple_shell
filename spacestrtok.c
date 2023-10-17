@@ -7,14 +7,15 @@
  */
 int _spacestrtok(info_t *info, char **args)
 {
+	
 	char *delim = " ";
 
 	int arg_count = 0;
-	char *token = strtok(info->input, delim); /*separate cmds singular*/
+	char *token = _strtok(info->input, delim); /*separate cmds singular*/
 
 	while (token != NULL) /*free token free args some where*/
 	{
-		args[arg_count++] = _strdup(token); /* strdup to maintain original line*/
+		info->input[arg_count++] = _strdup(token); /* strdup to maintain original line*/
 		token = strtok(NULL, delim);
 	}
 	return (arg_count);

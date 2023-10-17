@@ -6,7 +6,7 @@
  *
  */
 
-void handle_hash(info_t info)
+void handle_hash(info_t *info)
 {
 	int i = 0;
 
@@ -21,42 +21,42 @@ void handle_hash(info_t info)
 	}
 }
 /**
-* _myexit - exits the shell
-* @info: Struct containing arguments. Used to maintain
-*          constant function prototype.
-*  Return: exits with a given exit status
-*         (0) if info.argv[0] != "exit"
-*/
+ * _myexit - exits the shell
+ * @info: Struct containing arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: exits with a given exit status
+ *         (0) if info.argv[0] != "exit"
+ */
 int _myexit(info_t *info)
 {
-	int exitcheck;
+	int e_status;
 
-	if (info->argv[1] != NULL) /* If there is an exit argument */
+	if (info->input[1] != NULL) /* If there is an exit argument */
 	{
-		exitcheck = _atoi(info->argv[1]);
+		exitcheck = _atoi(info->input[1]);
 		return (exit_status);
-		/**
-		 * if (exitcheck == -1)
-		* {
-			* info->status = 2;
-			* print_error(info, "Illegal number: ");
-		*	_eputs(info->argv[1]);
-		*	_eputchar('\n');
-		*	return (1);
-		*}
-		*	info->err_num = _erratoi(info->argv[1]);
-		*return (-2);
-		*
-		*exit(exit_code);
-		*/
+		
+		if e_status == -1)
+		{
+		   info->e_status = 2;
+		  print_error(info, "Illegal number: ");
+		 	_eputs(info->argv[1]);
+		 	_eputchar('\n');
+		 	return (1);
+		 }
+		 	info->err_num = _erratoi(info->argv[1]);
+		 return (-2);
+		 
+		 exit(exit_code);
+		 
 	}
 	else
 	{
-	/**
-	 * info->err_num = -1;
-	*return (-2);
-	*/
-	return (0);/* exit(0); */
+		/**
+		 * info->err_num = -1;
+		 *return (-2);
+		 */
+		return (0); /* exit(0); */
 	}
 }
 /**
@@ -80,40 +80,39 @@ void free_args(char **args)
 }
 
 /**
-* find_builtin - finds a builtin command
-* @info: the parameter & return info struct
-*
-* Return: -1 if builtin not found,
-*			0 if builtin executed successfully,
-*			1 if builtin found but not successful,
-*			-2 if builtin signals exit()
-*/
-int find_builtin(info_t *p_info)
+ * find_builtin - finds a builtin command
+ * @info: the parameter & return info struct
+ *
+ * Return: -1 if builtin not found,
+ *			0 if builtin executed successfully,
+ *			1 if builtin found but not successful,
+ *			-2 if builtin signals exit()
+ */
+int find_builtin(info_t *info)
 {
 	int i;
 
 	/*built_in_ret = -1;*/
 	builtin_table builtintbl[] = {
 		{"exit", _myexit},
-		{NULL, NULL}
-	};
+		{NULL, NULL}};
 
 	for (i = 0; builtintbl[i].type; i++)
 	{
 		if (strcmp(info->argv[0], builtintbl[i].type) == 0)
 		{
-			 return (builtintbl[i].func(info));
+			return (builtintbl[i].func(info));
 		}
 	}
 	return (-1);
 }
 
 /**
-* find_cmd - finds a command in PATH
-* @info: the parameter & return info struct
-*
-* Return: void
-*/
+ * find_cmd - finds a command in PATH
+ * @info: the parameter & return info struct
+ *
+ * Return: void
+ */
 void find_cmd(info_t *info)
 {
 	char *path = NULL;
@@ -140,8 +139,7 @@ void find_cmd(info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || _getenv(info, "PATH=")
-			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+		if ((interactive(info) || _getenv(info, "PATH=") || info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{

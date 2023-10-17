@@ -35,18 +35,23 @@ typedef struct liststr
 */
 typedef struct info
 {
+	int from_pipe;
 	char *input; /*line*/
 	list_t *env;
+	char *args;
+	int err_num;
+	int e_status;
+
 /*  // Add other members here if needed */
 } info_t;
-#define INFO_INIT { NULL, NULL}
+#define INFO_INIT { 0, NULL, NULL, NULL, 0, 0}
 
 
 
 
 /* // Function prototypes */
 /*prompt.c*/
-void prompt(void);
+void prompt(info_t *info);
 int is_input(void);
 /*putchar.c*/
 int _putchar(const char *c);
@@ -78,13 +83,13 @@ int _strcmp(char *s1, char *s2);
 /*spacestrtok.c */
 int _spacestrtok(info_t *info, char **args);
 /* haspath.c */
-void _haspath(info_t *info, char **args);
+void _haspath(char **args);
 /*getpath.c*/
 void _getpath(info_t *info, char **args);
 /*parentpid.c*/
 void _parentpid(pid_t cpid);
 /*getenv.c*/
-char *_getenv(const char *name, char **envp);
+char *_getenv(char *path_token, char **args);
 
 /* // Function to check if a command is executable */
 bool _isexec(char **args);
