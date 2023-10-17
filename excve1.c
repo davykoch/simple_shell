@@ -1,14 +1,16 @@
 #include "main.h"
 /**
- * 
- * 
+ * custom_printf_env - custom prinft env function
+ * @env: environment parameter
 */
 void custom_printf_env(char *env[])
 {
 	int i = 0;
+
 	while (env[i] != NULL)
 	{
 		size_t len = 0;
+
 		while (env[i][len] != '\0')
 		{
 			len++;
