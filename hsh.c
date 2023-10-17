@@ -7,9 +7,10 @@ void hsh(info_t *info, int from_pipe)
 {
 
 	/* linenumber++; */
-	/* size_t size = 0;	 */					/*len*/
-	/* ssize_t input;  *//*what fgets stores to*/ /*changed from line*/
+	/* size_t size = 0;	 */						   /*len*/
+	/* ssize_t input;  */ /*what fgets stores to*/ /*changed from line*/
 	static char input[MAX_ARGS];
+
 	ssize_t reead;
 	int i = 0;
 
@@ -18,22 +19,19 @@ void hsh(info_t *info, int from_pipe)
 	reead = read(STDIN_FILENO, input, MAX_ARGS);
 	if (reead == -1)
 	{
-		if (feof(stdin)) /*ctrl d*/
-		{
-			if (from_pipe && isatty(STDIN_FILENO))
-				_putchar("\n");
-			/*free(input);*/
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			perror("cannot get input"); /* check */
-			/* free(input); */
-			exit(EXIT_FAILURE);
-		}
+		perror("read line failed"); /* check */
+		/* free(input); */
+		exit(EXIT_FAILURE);
 	}
+	if (reead == 0) /* End of File (Ctrl+D) */
+	{
+		if (from_pipe && isatty(STDIN_FILENO))
+			_putchar("\n");
+		exit(EXIT_SUCCESS);
+	}
+	input[reead] = '\0'; /* Null-terminate the buffer */
 	while (input[i])
-	{/*remove new line char*/
+	{ /*remove new line char*/
 		if (input[reead - 1] == '\n')
 		{
 			input[reead - 1] = '\0';
@@ -43,7 +41,7 @@ void hsh(info_t *info, int from_pipe)
 	info->input = _strdup(input);
 	/* Free the input array after copying its contents to info->input */
 	/* free(input); */
-	/* handle_hash(info); *//*myfunc.c*/
+	/* handle_hash(info); */ /*myfunc.c*/
 	if (info->input[0] == '\0')
 
 	{
