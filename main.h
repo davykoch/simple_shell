@@ -69,10 +69,12 @@ void _execve1(info_t *info);
 char *_strdup(const char *str);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *s, char c);
+int _erratoi(const char *s, int *error);
 /*stringfunc1.c*/
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
+int _atoi(char *s);
 /* _atoi */
 
 /*spacestrtok.c */

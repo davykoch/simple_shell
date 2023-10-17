@@ -6,7 +6,7 @@
  *
  */
 
-void handle_hash(info_t info)
+void handle_hash(info_t *info)
 {
 	int i = 0;
 
