@@ -53,82 +53,46 @@ char *_strcat(char *dest, char *src)
 /**
 * _strchr - locates a character in a string
 * @s: the string to be parsed
-* @c: the character to look for
-* Return: (s) a pointer to the memory area s
+* @c: the char to look for
+* Return: a pointer to the memory area s
 */
 char *_strchr(char *s, char c)
 {
 	while (*s != '\0')
 	{
 		if (*s == c)
-			return (s); /*Return a pointer to the first occurrence of 'c'*/
+			return (s);
 		s++;
 	}
 
-	return (NULL); /*Return NULL if 'c' is not found in the string*/
+	return (NULL);
 }
-
 /**
-* _erratoi - custom string-to-integer conversion with error handling
-* @s: string to be converted
-* @error: a pointer to an integer for error information
-*
-* Return: integer value if conversion is successful,
-* or INT_MIN/INT_MAX on error
-*
-* Error codes:
-*   0: No error
-*  -1: Empty string
-*  -2: Non-numeric character
-*  -3: Integer overflow
+ * _erratoi - converts string to integer
+ * @s: string
+ * Return: integer value
 */
-int _erratoi(const char *s, int *error)
+int _erratoi(char *s)
 {
 	int i = 0;
+	unsigned long int result = 0;
 
-	int digit;
+	if (*s == '+')
+		s++;
 
-	int sign = 1;
-
-	int result = 0;
-
-	if (s == NULL || *s == '\0')
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (error != NULL)
-			*error = -1;
-		return (INT_MIN);
-	}
-	if (s[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	while (s[i] != '\0')
-	{
-		if (s[i] < '0' || s[i] > '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
-			if (error != NULL)
-				*error = -2;
-			return (INT_MIN);
+			result *= 10;
+			result += (s[i] - '0');
+			if (result > INT_MAX)
+				return (-1);
+		} else
+		{
+			return (-1);
 		}
-		digit = s[i] - '0';
-		if (sign == 1 && (result > INT_MAX / 10 ||
-					(result == INT_MAX / 10 && digit > INT_MAX % 10)))
-		{
-			if (error != NULL)
-				*error = -3;
-			return (INT_MAX);
-		} else if (sign == -1 && (result < INT_MIN / 10 ||
-		(result == INT_MIN / 10 && digit > -(INT_MIN % 10))))
-		{
-			if (error != NULL)
-				*error = -3;
-			return (INT_MIN);
-		}
-		result = result * 10 + sign * digit;
-		i++;
 	}
-	if (error != NULL)
-		*error = 0;
+
 	return (result);
 }

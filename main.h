@@ -19,7 +19,10 @@ extern char **environ;
 
 
 /**
- *
+ * struct liststr - contains list of str
+ * @num: the number of str
+ * @str: string
+ * @next: next node
  */
 typedef struct liststr
 {
@@ -29,9 +32,13 @@ typedef struct liststr
 
 	struct liststr *next;
 } list_t;
-/* // Struct to hold information passed to functions*/
 /**
- *
+ * struct info - holds all info
+ * @input: what user writes
+ * @env: env it runs in
+ * @args:gotten from getline func
+ * @err_num: error number
+ * @e_status: exit status
  */
 typedef struct info
 {
@@ -41,8 +48,6 @@ typedef struct info
 	char **args;
 	int err_num;
 	int e_status;
-
-	/*  // Add other members here if needed */
 } info_t;
 #define INFO_INIT {NULL, NULL, NULL, 0, 0}
 
@@ -75,7 +80,7 @@ void _execve1(info_t *info);
 char *_strdup(const char *str);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *s, char c);
-int _erratoi(const char *s, int *error);
+int _erratoi(char *s);
 /*stringfunc1.c*/
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
