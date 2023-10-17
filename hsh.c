@@ -11,10 +11,7 @@ void hsh(info_t *info, int from_pipe)
 	/* size_t size = 0;	 */						   /*len*/
 	/* ssize_t input;  */ /*what fgets stores to*/ /*changed from line*/
 	/* static char input[MAX_ARGS]; */
-<<<<<<< HEAD
 	char *input = NULL; 
-=======
->>>>>>> refs/remotes/origin/master
 	size_t len = 0;
 	ssize_t reead;
 	int i = 0;
@@ -27,7 +24,7 @@ void hsh(info_t *info, int from_pipe)
 	{
 		perror("read line failed"); /* check */
 		free(input);
-		iexit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	if (reead == 0) /* End of File (Ctrl+D) */
 	{

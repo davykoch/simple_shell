@@ -5,20 +5,20 @@
  * @args: args from getline
  * Return:void
  */
-void _getpath(info_t *info)
+void _getpath(info_t *info, char **args)
 {
 
 	char *path = getenv("PATH");
-	char *path_token = strtok(path, ":");/*custom?*/
+	char *path_token = strtok(path, ":"); /*custom?*/
 	(void)info;
 
 	while (path_token != NULL)
 	{
-		char *full_path = _getenv(path_token, info);
+		char *full_path = _getenv(path_token, args);
 
-		if (access(full_path, X_OK) == 0)/*can path be accessed*/
+		if (access(full_path, X_OK) == 0) /*can path be accessed*/
 		{
-			int exve = execve(full_path, info->args, environ);
+			int exve = execve(full_path, args, environ);
 
 			if (exve == -1)
 			{
@@ -30,19 +30,14 @@ void _getpath(info_t *info)
 		}
 		/* info->full_path = strdup(full_path); */
 		free(full_path);
-		path_token = strtok(NULL, ":");/*adds delimiter*/
+		path_token = strtok(NULL, ":"); /*adds delimiter*/
 	}
 	/*/ If we reach here, the command was not found in PATH*/
 	/*fprintf(stderr, "Command not found: %s\n", args[0]);*/
 	/*perror("command not found");*/
 	/*error should be sent to _Exit() */
-<<<<<<< HEAD
-	/* fprintf(stderr, "%s: %d: %s: not found\n",/ *  av[0], * / / * linenumber * /, args[0]); */
-	free(info->input);
-=======
 	/* fprintf(stderr, "%s: %d: %s: not found\n",/ *  av[0], */
 	/*linenumber * /, args[0]);*/
 	/* free(info->input); */
->>>>>>> refs/remotes/origin/master
 	exit(EXIT_FAILURE);
 }

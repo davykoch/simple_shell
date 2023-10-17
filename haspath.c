@@ -1,19 +1,15 @@
 #include "main.h"
 /**
  * _haspath - checks if has path
-<<<<<<< HEAD
  *	@args: arguments
-=======
- * @args: arguments
->>>>>>> refs/remotes/origin/master
  * Return: void
  */
-void _haspath(info_t *info)
+void _haspath(char **args)
 {
-	if (access(info->args[0], X_OK) == 0)
+	if (access(args[0], X_OK) == 0)
 	{
 
-		if ((execve(info->args[0], info->args, environ)) == -1)
+		if ((execve(args[0], args, environ)) == -1)
 		{
 			perror("error -access");
 			/* free_args(args); */

@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * custom_printf_env - custom prinft env function
- * @env: environment parameter
+* custom_printf_env - custom prinft env function
+* @env: environment parameter
 */
 void custom_printf_env(char *env[])
 {
@@ -21,9 +21,9 @@ void custom_printf_env(char *env[])
 	}
 }
 /**
- * _execve1 - calls the prog and
- * @info: struct with userdata
- */
+* _execve1 - calls the prog and
+* @info: struct with userdata
+*/
 void _execve1(info_t *info)
 {
 
