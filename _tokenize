@@ -1,7 +1,9 @@
 #include "main.h"
 /**
- * 
- * 
+ * _tokenize - splits string characters
+  * @string: string to tokenize
+  * @delim: string delimitor
+  * Return: int
 */
 int _tokenize(char *string, char *delim)
 {

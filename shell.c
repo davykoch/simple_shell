@@ -1,11 +1,17 @@
 #include "main.h"
 
 /**
+<<<<<<< HEAD
 * main - its the main shell
 * @ac: argument count
 * @av: argument vector
 * Return: 0 on success
 */
+=======
+ * main - its the main shell
+ * Return: 0 on success
+ */
+>>>>>>> refs/remotes/origin/master
 int main(void)
 {
 	info_t info[] = {INFO_INIT};

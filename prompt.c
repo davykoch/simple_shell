@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
-* is_input - checks for interactive
-* Return: integer value
-*/
+ * is_input - checks for interactive
+ * Return: integer value
+ */
 int is_input(void)
 {
 
@@ -18,9 +18,9 @@ int is_input(void)
 }
 
 /**
-* prompt - checks interactive and prints prompt
-* @info: all infor
-* Return: frompipe
-*/
+ * prompt - checks interactive and prints prompt
+ * @info: all infor
+ * Return: frompipe
+ */
 /* int prompt_display(void) */
 

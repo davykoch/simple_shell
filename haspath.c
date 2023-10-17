@@ -1,7 +1,11 @@
 #include "main.h"
 /**
  * _haspath - checks if has path
+<<<<<<< HEAD
  *	@args: arguments
+=======
+ * @args: arguments
+>>>>>>> refs/remotes/origin/master
  * Return: void
  */
 void _haspath(info_t *info)
