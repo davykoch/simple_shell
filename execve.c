@@ -6,7 +6,7 @@
 */
 void _execve(info_t *info)
 {
-	char *args[] = {NULL, NULL}; /* check*/
+	char *args[64]; /* check*/
 	int arg_count;/*check*/
 	pid_t cpid;
 
