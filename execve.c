@@ -1,9 +1,9 @@
 #include "main.h"
 /**
-* _execve - calls progs
-* @p_info:string input by user
-* Return: void
-*/
+ * _execve - calls progs
+ * @info: string input by user
+ * Return: void
+ */
 void _execve(info_t *info)
 {
 	char *args[64]; /* check*/
@@ -40,7 +40,7 @@ void _execve(info_t *info)
 			else
 			{
 				_getpath(info, args);/*execute*/
-				
+
 				free_args(args);
 			}
 		}

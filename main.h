@@ -19,8 +19,8 @@ extern char **environ;
 
 
 /**
-*
-*/
+ *
+ */
 typedef struct liststr
 {
 	int num;
@@ -31,18 +31,18 @@ typedef struct liststr
 } list_t;
 /* // Struct to hold information passed to functions*/
 /**
-*
-*/
+ *
+ */
 typedef struct info
 {
-/*int from_pipe; */
+	/*int from_pipe; */
 	char *input; /*line*/
 	list_t *env;
 	char **args;
 	int err_num;
 	int e_status;
 
-/*  // Add other members here if needed */
+	/*  // Add other members here if needed */
 } info_t;
 #define INFO_INIT {NULL, NULL, NULL, 0, 0}
 

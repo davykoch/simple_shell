@@ -1,12 +1,9 @@
 #include "main.h"
 
 /**
-* main - its the main shell
-* @ac: argument count
-* @av: argument vector
-* @envp: environment variable
-* Return: 0 on success
-*/
+ * main - its the main shell
+ * Return: 0 on success
+ */
 int main(void)
 {
 	info_t info[] = {INFO_INIT};

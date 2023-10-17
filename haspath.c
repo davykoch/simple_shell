@@ -1,8 +1,7 @@
 #include "main.h"
 /**
  * _haspath - checks if has path
- * @info: all info
- *	@args: arguments
+ * @args: arguments
  * Return: void
  */
 void _haspath(char **args)

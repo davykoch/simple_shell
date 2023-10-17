@@ -1,10 +1,10 @@
 #include "main.h"
 /**
-* handle_hash - check if string has
-* comment (#) and voids it
-* @info:struct containing string to be checked
-*
-*/
+ * handle_hash - check if string has
+ * comment (#) and voids it
+ * @info:struct containing string to be checked
+ *
+ */
 
 void handle_hash(info_t *info)
 {
@@ -20,6 +20,11 @@ void handle_hash(info_t *info)
 		i++;
 	}
 }
+/**
+ * _myexit - exits string
+ * @info: info of the string
+ * Return: exit status
+ */
 int _myexit(info_t *info)
 {
 	int e_status;
@@ -30,33 +35,33 @@ int _myexit(info_t *info)
 		return (e_status);
 		/**
 		 * if (exitcheck == -1)
-		*{
-			* info->status = 2;
-			* print_error(info, "Illegal number: ");
-		*	_eputs(info->argv[1]);
-		*	_eputchar('\n');
-		*	return (1);
-		*}
-		*	info->err_num = _erratoi(info->argv[1]);
-		*return (-2);
-		*
-		*exit(exit_code);
-		*/
+		 *{
+		 * info->status = 2;
+		 * print_error(info, "Illegal number: ");
+		 *	_eputs(info->argv[1]);
+		 *	_eputchar('\n');
+		 *	return (1);
+		 *}
+		 *	info->err_num = _erratoi(info->argv[1]);
+		 *return (-2);
+		 *
+		 *exit(exit_code);
+		 */
 	}
 	else
 	{
-	/**
-	 * info->err_num = -1;
-	*return (-2);
-	*/
-	 return (0);/* exit(0); */
+		/**
+		 * info->err_num = -1;
+		 *return (-2);
+		 */
+		return (0);/* exit(0); */
 	}
 }
 /**
-* free_args - free args
-* @args: arguments to be freed
-* Return: void
-*/
+ * free_args - free args
+ * @args: arguments to be freed
+ * Return: void
+ */
 void free_args(char **args)
 {
 	int i;

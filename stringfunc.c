@@ -28,7 +28,6 @@ char *_strdup(const char *str)
 		ret[i] = str[i];
 
 	ret[length] = '\0';
-
 	return (ret);
 }
 /**
@@ -75,7 +74,8 @@ char *_strchr(char *s, char c)
  * @s: the string to be converted
  * @error: a pointer to an integer for error information
  *
- * Return: integer value if conversion is successful, or INT_MIN/INT_MAX on error
+ * Return: integer value if conversion is successful,
+ * or INT_MIN/INT_MAX on error
  *
  * Error codes:
  *   0: No error
@@ -94,7 +94,7 @@ int _erratoi(const char *s, int *error)
 	{
 		if (error != NULL)
 		{
-			*error = -1; 
+			*error = -1;
 		}
 		return (INT_MIN);
 	}
@@ -117,19 +117,22 @@ int _erratoi(const char *s, int *error)
 
 		digit = s[i] - '0';
 
-		if (sign == 1 && (result > INT_MAX / 10 || (result == INT_MAX / 10 && digit > INT_MAX % 10)))
+		if (sign == 1 && (result > INT_MAX / 10 ||
+					(result == INT_MAX / 10 && digit > INT_MAX % 10)))
 		{
 			if (error != NULL)
 			{
 				*error = -3;
 			}
 			return (INT_MAX);
-		} else if (sign == -1 && (result < INT_MIN / 10 || (result == INT_MIN / 10 && digit > -(INT_MIN % 10))))
+		} else if (sign == -1 && (result < INT_MIN / 10 ||
+					(result == INT_MIN / 10 && digit > -(INT_MIN % 10))))
 		{
 			if (error != NULL)
 			{
-				*error = -3; 
+				*error = -3;
 			}
+
 			return (INT_MIN);
 		}
 		result = result * 10 + sign * digit;

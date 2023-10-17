@@ -7,7 +7,7 @@
  */
 void _getpath(info_t *info, char **args)
 {
-	
+
 	char *path = getenv("PATH");
 	char *path_token = strtok(path, ":");/*custom?*/
 	(void)info;
@@ -36,7 +36,8 @@ void _getpath(info_t *info, char **args)
 	/*fprintf(stderr, "Command not found: %s\n", args[0]);*/
 	/*perror("command not found");*/
 	/*error should be sent to _Exit() */
-	/* fprintf(stderr, "%s: %d: %s: not found\n",/ *  av[0], * / / * linenumber * /, args[0]); */
+	/* fprintf(stderr, "%s: %d: %s: not found\n",/ *  av[0], */
+	/*linenumber * /, args[0]);*/
 	/* free(info->input); */
 	exit(EXIT_FAILURE);
 }
