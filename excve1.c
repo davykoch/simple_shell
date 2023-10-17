@@ -1,8 +1,8 @@
 #include "main.h"
 /**
-* _execve1 - calls the prog and
-* @info: struct with userdata
-*/
+ * _execve1 - calls the prog and
+ * @info: struct with userdata
+ */
 void _execve1(info_t *info)
 {
 
@@ -17,6 +17,11 @@ void _execve1(info_t *info)
 			_putchar(*env);
 			env++;
 		}
+	}
+	else if (_strcmp(info->input, "exit") == 0)
+	{
+		/* free(input); */
+		exit(EXIT_SUCCESS); /* Exit the shell*/
 	}
 	else
 	{

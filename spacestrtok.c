@@ -1,21 +1,20 @@
 #include "main.h"
 /**
  * _spacestrtok - tokenizes strings
- * @p_info: string to tokenize
+ * @info: string to tokenize
  * @args: string arguments
  * Return: count
  */
 int _spacestrtok(info_t *info, char **args)
 {
-	
 	char *delim = " ";
 
 	int arg_count = 0;
-	char *token = _strtok(info->input, delim); /*separate cmds singular*/
+	char *token = strtok(info->input, delim); /*separate cmds singular*/
 
 	while (token != NULL) /*free token free args some where*/
 	{
-		info->input[arg_count++] = _strdup(token); /* strdup to maintain original line*/
+		args[arg_count++] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	return (arg_count);

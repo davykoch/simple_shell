@@ -38,7 +38,7 @@ typedef struct info
 	int from_pipe;
 	char *input; /*line*/
 	list_t *env;
-	char *args;
+	char **args;
 	int err_num;
 	int e_status;
 

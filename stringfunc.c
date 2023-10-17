@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
-* _strdup -  duplicates a given input string
-* @str: input string to duplicate
-* Return: pointer to duplicated string
-*/
+ * _strdup -  duplicates a given input string
+ * @str: input string to duplicate
+ * Return: pointer to duplicated string
+ */
 char *_strdup(const char *str)
 {
 	int length = 0;
@@ -32,11 +32,11 @@ char *_strdup(const char *str)
 	return (ret);
 }
 /**
-* _strcat - concatenates two strings
-* @dest: the destination buffer
-* @src: the source buffer
-* Return: pointer to destination buffer
-*/
+ * _strcat - concatenates two strings
+ * @dest: the destination buffer
+ * @src: the source buffer
+ * Return: pointer to destination buffer
+ */
 char *_strcat(char *dest, char *src)
 {
 	char *ret = dest;
@@ -52,17 +52,17 @@ char *_strcat(char *dest, char *src)
 	return (ret);
 }
 /**
-* _strchr - locates a character in a string
-* @s: the string to be parsed
-* @c: the character to look for
-* Return: (s) a pointer to the memory area s
-*/
+ * _strchr - locates a character in a string
+ * @s: the string to be parsed
+ * @c: the character to look for
+ * Return: (s) a pointer to the memory area s
+ */
 char *_strchr(char *s, char c)
 {
 	do
 	{
 		if (*s == c)
-			return (s);     /*Return a pointer to the first occurrence of 'c'*/
+			return (s);		/*Return a pointer to the first occurrence of 'c'*/
 	} while (*s++ != '\0'); /*Keep searching until the end of the string*/
 
 	return (NULL); /*Return NULL if 'c' is not found in the string*/

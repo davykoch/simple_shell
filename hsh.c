@@ -10,15 +10,12 @@ void hsh(info_t *info)
 	/* size_t size = 0;	 */					/*len*/
 	/* ssize_t input;  *//*what fgets stores to*/ /*changed from line*/
 	static char input[MAX_ARGS];
-
 	ssize_t reead;
 	int i = 0;
 
 	_memset(input, 0, MAX_ARGS);/*or INFO_INIT*/
 
 	reead = read(STDIN_FILENO, input, MAX_ARGS);
-	/* read = getline(&input, &size, stdin); */
-
 	if (reead == -1)
 	{
 		if (feof(stdin)) /*ctrl d*/

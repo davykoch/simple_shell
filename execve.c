@@ -9,7 +9,8 @@ void _execve(info_t *info)
 	char *args[] = {NULL, NULL}; /* check*/
 	int arg_count;/*check*/
 	pid_t cpid;
-	int e_status;
+
+	arg_count = _spacestrtok(info, args);
 
 	if (arg_count > 0)
 	{
