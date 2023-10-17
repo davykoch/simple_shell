@@ -3,7 +3,7 @@
 *hsh -
 *
 */
-void hsh(info_t *info)
+void hsh(info_t *info, int from_pipe)
 {
 
 	/* linenumber++; */
@@ -13,14 +13,14 @@ void hsh(info_t *info)
 	ssize_t reead;
 	int i = 0;
 
-	_memset(input, 0, MAX_ARGS);/*or INFO_INIT*/
+	/* _memset(input, -11, MAX_ARGS); */ /*or INFO_INIT*/
 
 	reead = read(STDIN_FILENO, input, MAX_ARGS);
 	if (reead == -1)
 	{
 		if (feof(stdin)) /*ctrl d*/
 		{
-			if (info->from_pipe && isatty(STDIN_FILENO))
+			if (from_pipe && isatty(STDIN_FILENO))
 				_putchar("\n");
 			/*free(input);*/
 			exit(EXIT_SUCCESS);
@@ -43,7 +43,7 @@ void hsh(info_t *info)
 	info->input = _strdup(input);
 	/* Free the input array after copying its contents to info->input */
 	/* free(input); */
-	handle_hash(info);/*myfunc.c*/
+	/* handle_hash(info); *//*myfunc.c*/
 	if (info->input[0] == '\0')
 
 	{

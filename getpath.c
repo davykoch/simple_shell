@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _getpath - runs excve if no path entered by user
  * @info: line read
@@ -6,8 +7,10 @@
  */
 void _getpath(info_t *info, char **args)
 {
+	
 	char *path = getenv("PATH");
 	char *path_token = strtok(path, ":");/*custom?*/
+	(void)info;
 
 	while (path_token != NULL)
 	{
@@ -27,7 +30,7 @@ void _getpath(info_t *info, char **args)
 		}
 		/* info->full_path = strdup(full_path); */
 		free(full_path);
-		path_token = _strtok(NULL, ":");/*adds delimiter*/
+		path_token = strtok(NULL, ":");/*adds delimiter*/
 	}
 	/*/ If we reach here, the command was not found in PATH*/
 	/*fprintf(stderr, "Command not found: %s\n", args[0]);*/

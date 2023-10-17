@@ -1,4 +1,4 @@
-#include "shell.c"
+#include "main.h"
 
 /**
 * is_input - checks for interactive
@@ -20,17 +20,7 @@ int is_input(void)
 /**
 * prompt - checks interactive and prints prompt
 * @info: all infor
+* Return: frompipe
 */
-void prompt(info_t *info)
-{
-	int from_pipe;
+/* int prompt_display(void) */
 
-	from_pipe = is_input();
-	if (from_pipe && isatty(STDIN_FILENO))
-	{
-		info->from_pipe = _strdup(from_pipe);
-		_putchar("$-");
-		/* fflush(stdout); */
-		/* free(from_pipe);*check*/
-	}
-}

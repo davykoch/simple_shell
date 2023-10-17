@@ -35,7 +35,7 @@ typedef struct liststr
 */
 typedef struct info
 {
-	int from_pipe;
+/*int from_pipe; */
 	char *input; /*line*/
 	list_t *env;
 	char **args;
@@ -44,19 +44,19 @@ typedef struct info
 
 /*  // Add other members here if needed */
 } info_t;
-#define INFO_INIT { 0, NULL, NULL, NULL, 0, 0}
+#define INFO_INIT {NULL, NULL, NULL, 0, 0}
 
 
 
 
 /* // Function prototypes */
 /*prompt.c*/
-void prompt(info_t *info);
+int prompt_display(void);
 int is_input(void);
 /*putchar.c*/
 int _putchar(const char *c);
 /*hsh*/
-void hsh(info_t *info);
+void hsh(info_t *info, int from_pipe);
 /*myfunc.c*/
 void handle_hash(info_t *info);
 int _myexit(info_t *info);

@@ -86,6 +86,7 @@ char *_strchr(char *s, char c)
 int _erratoi(const char *s, int *error)
 {
 	int i = 0;
+    int digit;
     int sign = 1;
     int result = 0;
 	
@@ -114,7 +115,7 @@ int _erratoi(const char *s, int *error)
             return INT_MIN;
         }
 
-        int digit = s[i] - '0';
+         digit = s[i] - '0';
 
         if (sign == 1 && (result > INT_MAX / 10 || (result == INT_MAX / 10 && digit > INT_MAX % 10)))
 		{
