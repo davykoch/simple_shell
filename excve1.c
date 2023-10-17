@@ -1,5 +1,24 @@
 #include "main.h"
 /**
+ * 
+ * 
+*/
+void custom_printf_env(char *env[])
+{
+	int i = 0;
+	while (env[i] != NULL)
+	{
+		size_t len = 0;
+		while (env[i][len] != '\0')
+		{
+			len++;
+		}
+		write(STDOUT_FILENO, env[i], len);
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
+}
+/**
  * _execve1 - calls the prog and
  * @info: struct with userdata
  */
@@ -14,7 +33,8 @@ void _execve1(info_t *info)
 
 		while (*env != NULL)
 		{
-			_putchar(*env);
+			/* _putchar(*env); */
+			custom_printf_env(env);
 			env++;
 		}
 	}

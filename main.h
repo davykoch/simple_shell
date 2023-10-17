@@ -68,6 +68,7 @@ char *_memset(char *s, char b, unsigned int n);
 void _execve(info_t *info);
 
 /* execve1.c */
+void custom_printf_env(char *env[]);
 void _execve1(info_t *info);
 
 /* stringfunc.c*/
