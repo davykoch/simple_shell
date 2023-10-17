@@ -14,7 +14,7 @@ void hsh(info_t *info, int from_pipe)
 	ssize_t reead;
 	int i = 0;
 
-	/* _memset(input, -11, MAX_ARGS); */ /*or INFO_INIT*/
+	 _memset(input, 0, MAX_ARGS); /*or INFO_INIT*/
 
 	reead = read(STDIN_FILENO, input, MAX_ARGS);
 	if (reead == -1)
@@ -26,11 +26,13 @@ void hsh(info_t *info, int from_pipe)
 	if (reead == 0) /* End of File (Ctrl+D) */
 	{
 		if (from_pipe && isatty(STDIN_FILENO))
-			_putchar("\n");
+			write(STDOUT_FILENO, "\n", 1);
 		exit(EXIT_SUCCESS);
 	}
+	if (reead == '\0' || reead == EOF)
+		exit(EXIT_SUCCESS);
 	input[reead] = '\0'; /* Null-terminate the buffer */
-	while (input[i])
+	while (input[i] && i < reead)
 	{ /*remove new line char*/
 		if (input[reead - 1] == '\n')
 		{
@@ -41,7 +43,7 @@ void hsh(info_t *info, int from_pipe)
 	info->input = _strdup(input);
 	/* Free the input array after copying its contents to info->input */
 	/* free(input); */
-	/* handle_hash(info); */ /*myfunc.c*/
+	 handle_hash(info);  /*myfunc.c*/
 	if (info->input[0] == '\0')
 
 	{
