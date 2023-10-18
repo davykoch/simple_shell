@@ -41,14 +41,12 @@ int is_input(void)
  * @envp: environment variable
  * Return: 0 on success
  */
-int main(int ac, char **av, char **envp)
+int main(int ac, char **av)
 {
-
+	int linenumber;
 	size_t len = 0;
 	ssize_t read;
 	int from_pipe;
-
-	int linenumber = 0;
 
 	char *line = NULL; /* stores string from cmd line*/
 
@@ -79,7 +77,7 @@ int main(int ac, char **av, char **envp)
 		}
 		if (line[read - 1] == '\n')
 			line[read - 1] = '\0';
-		_execve1(line, av, linenumber, envp);
+		_execve1(line, av, linenumber);
 	}
 	free(line);
 	return (0);

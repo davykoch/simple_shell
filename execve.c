@@ -7,7 +7,7 @@
 * @envp: environment variable
 * Return: void
 */
-void _execve(char *line, char **av, int linenumber, char **envp)
+void _execve(char *line, char **av, int linenumber)
 {
 	char *args[64]; /* check*/
 
@@ -15,7 +15,7 @@ void _execve(char *line, char **av, int linenumber, char **envp)
 
 	if (arg_count > 0)
 	{
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
 			int exit_status;
 
@@ -24,12 +24,12 @@ void _execve(char *line, char **av, int linenumber, char **envp)
 		}
 
 		args[arg_count] = NULL;
-		_fork(args, line, av, linenumber, envp);
+		_fork(args, line, av, linenumber);
 	}
 	else
 	{
 		/* handle exit*/
-		if (strcmp(line, "exit") == 0)
+		if (_strcmp(line, "exit") == 0)
 		{
 			free(line);
 			exit(EXIT_SUCCESS); /* Exit the shell*/
