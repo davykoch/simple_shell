@@ -8,7 +8,7 @@
  * @envp: environment variable
  * Return:void
  */
-void _getpath(char *line, char **args, char **av, int linenumber, char **envp)
+void _getpath(char *line, char **args, char **av, int linenumber)
 {
 	char *path = getenv("PATH");
 	char *path_token = strtok(path, ":");
@@ -19,7 +19,7 @@ void _getpath(char *line, char **args, char **av, int linenumber, char **envp)
 
 		if (access(full_path, X_OK) == 0)
 		{
-			int exve = execve(full_path, args, envp);
+			int exve = execve(full_path, args);
 
 			if (exve == -1)
 			{

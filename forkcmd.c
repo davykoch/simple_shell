@@ -8,7 +8,7 @@
  * @envp: environment variable
  * Return: void
  */
-void _fork(char **args, char *line, char **av, int linenumber, char **envp)
+void _fork(char **args, char *line, char **av, int linenumber)
 {
 	pid_t pid;
 
@@ -24,11 +24,11 @@ void _fork(char **args, char *line, char **av, int linenumber, char **envp)
 	{
 		if (strchr(args[0], '/') != NULL)
 		{
-			_haspath(args, envp, line);
+			_haspath(args, line);
 		}
 		else
 		{
-			_getpath(line, args, av, linenumber, envp);
+			_getpath(line, args, av, linenumber);
 			free_args(args);
 		}
 	}
