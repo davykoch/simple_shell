@@ -5,6 +5,7 @@
 */
 void custom_printf_env(char *env[])
 {
+<<<<<<< HEAD
 	int i = 0;
 
 	while (env[i] != NULL)
@@ -29,6 +30,10 @@ void _execve1(info_t *info)
 
 	/*handle env*/
 	if (_strcmp(info->input, "env") == 0)
+=======
+	/*handle env*/
+	if (strcmp(line, "env") == 0)
+>>>>>>> 90b56def3e7656cf4d410a130b7191c83f2aff4f
 	{
 		/* Handle the "env" command by printing the environment variables*/
 		char **env = environ;
@@ -47,7 +52,11 @@ void _execve1(info_t *info)
 	}
 	else
 	{
+<<<<<<< HEAD
 		_execve(info);
+=======
+		_execve(line, av, linenumber, envp);
+>>>>>>> 90b56def3e7656cf4d410a130b7191c83f2aff4f
 	}
 
 }

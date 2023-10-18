@@ -107,6 +107,14 @@ int is_input(void);
 
 /* // Function to free memory allocated for arguments */
 void free_args(char **args);
+<<<<<<< HEAD
+=======
+void _haspath(char **args, char **envp, char *line);
+
+int _myexit(char **args);
+void _fork(char **args, char *line, char **av, int linenumber, char **envp);
+
+>>>>>>> 90b56def3e7656cf4d410a130b7191c83f2aff4f
 
 
 #endif /* MAIN_H */
