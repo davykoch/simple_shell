@@ -18,7 +18,8 @@ extern char **environ;
 #define BUF_FLUSH -1
 #define MAX_ARGS 1024
 
-bool is_delim(char c, char *delim);
+/* bool is_delim(char c, char *delim); */
+int is_delim(char c, char *delim);
 
 /*putchar.c*/
 int _putchar(char c);

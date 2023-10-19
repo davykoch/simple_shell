@@ -10,43 +10,43 @@
  */
 char **strtow(char *str, char *delim)
 {
-	int i, j, k, m, numwords = 0;
-	char **word_array;
+    int i, j, k, m, numwords = 0;
+    char **word_array;
 
-	if (str == NULL || str[0] == 0)
-		return (NULL);
-	if (!delim)
-     delim = " ";
+    if (str == NULL || str[0] == 0)
+        return (NULL);
+    if (!delim)
+        delim = " ";
     for (i = 0; str[i] != '\0'; i++)
-		if (!is_delim(str[i], delim) && (is_delim(str[i + 1], delim) || !str[i + 1]))
-			numwords++;
+        if (!is_delim(str[i], delim) && (is_delim(str[i + 1], delim) || !str[i + 1]))
+            numwords++;
 
-	if (numwords == 0)
-		return (NULL);
-	word_array = malloc((1 + numwords) * sizeof(char *));
-	if (!word_array)
-		return (NULL);
-	for (i = 0, j = 0; j < numwords; j++)
-	{
-		while (is_delim(str[i], delim))
-			i++;
-		k = 0;
-		while (!is_delim(str[i + k], delim) && str[i + k])
-			k++;
-		word_array[j] = malloc((k + 1) * sizeof(char));
-		if (!word_array[j])
-		{
-			for (k = 0; k < j; k++)
-				free(word_array[k]);
-			free(word_array);
-			return (NULL);
-		}
-		for (m = 0; m < k; m++)
-			word_array[j][m] = str[i++];
-		word_array[j][m] = 0;
-	}
-	word_array[j] = NULL;
-	return (word_array);
+    if (numwords == 0)
+        return (NULL);
+    word_array = malloc((1 + numwords) * sizeof(char *));
+    if (!word_array)
+        return (NULL);
+    for (i = 0, j = 0; j < numwords; j++)
+    {
+        while (is_delim(str[i], delim))
+            i++;
+        k = 0;
+        while (!is_delim(str[i + k], delim) && str[i + k])
+            k++;
+        word_array[j] = malloc((k + 1) * sizeof(char));
+        if (!word_array[j])
+        {
+            for (k = 0; k < j; k++)
+                free(word_array[k]);
+            free(word_array);
+            return (NULL);
+        }
+        for (m = 0; m < k; m++)
+            word_array[j][m] = str[i++];
+        word_array[j][m] = 0;
+    }
+    word_array[j] = NULL;
+    return (word_array);
 }
 /**
  * strtow_2 - Split a string into words based on a delimiter character
@@ -70,23 +70,19 @@ char **strtow_2(char *str, char d)
         while (str[i] != d && str[i] != '\0')
             i++;
     }
-
     if (numwords == 0)
         return (NULL);
 
     word_array = malloc((1 + numwords) * sizeof(char *));
     if (!word_array)
         return (NULL);
-
     for (i = 0, j = 0; j < numwords; j++)
     {
         while (str[i] == d)
             i++;
-
         k = 0;
         while (str[i + k] != d && str[i + k] != '\0')
             k++;
-
         word_array[j] = malloc((k + 1) * sizeof(char));
         if (!word_array[j])
         {
@@ -95,12 +91,31 @@ char **strtow_2(char *str, char d)
             free(word_array);
             return (NULL);
         }
-
         for (m = 0; m < k; m++)
             word_array[j][m] = str[i++];
         word_array[j][m] = '\0';
     }
-
     word_array[j] = NULL;
     return word_array;
+}
+/**
+ * is_delim - Check if a character is a delimiter.
+ * @c: The character to check.
+ * @delim: The delimiter string for comparison.
+ *
+ * Return: 1 if 'c' is a delimiter, 0 otherwise.
+ */
+int is_delim(char c, char *delim)
+{
+    if (c == '\0' || delim == NULL)
+        return 0;
+
+    while (*delim != '\0')
+    {
+        if (c == *delim)
+            return 1;
+        delim++;
+    }
+
+    return 0;
 }
