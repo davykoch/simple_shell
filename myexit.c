@@ -33,7 +33,7 @@ int _myexit(char **args, char **av, int linenumber)
  */
 void _perror(int linenumber, char *estr, char **av, char **args)
 {
-	_eputs(av);
+	_eputs(av[0]);
 	_eputs(": ");
 	_putint(linenumber, STDERR_FILENO);
 	_eputs(": ");

@@ -8,7 +8,7 @@ void _getpath(char **args)
 {
 
 	char *path = getenv("PATH");
-	char *path_token = strtow(path, ":"); /*custom?*/
+	char *path_token = strtok(path, ":"); /*custom?*/
 
 
 	while (path_token != NULL)

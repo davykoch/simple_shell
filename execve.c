@@ -13,7 +13,6 @@ void _execve(char *line, char **av, int linenumber)
 
 	int arg_count = _spacestrtok(line, args);
 
-
 	if (_strcmp(line, "setenv") == 0)
 	{
 		if (!args[1] || args[2])
@@ -39,20 +38,14 @@ void _execve(char *line, char **av, int linenumber)
 		{
 			_myexit(args, av, linenumber);
 		}
-
 		args[arg_count] = NULL;
 		_fork(args, line);
 	}
 	else
 	{
-		/* handle exit*/
 		if (_strcmp(line, "exit") == 0)
 		{
-			/* free(line); */
 			exit(EXIT_SUCCESS); /* Exit the shell*/
 		}
 	}
 }
-
-
-

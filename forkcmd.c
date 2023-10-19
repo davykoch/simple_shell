@@ -3,9 +3,6 @@
  * _fork - creates child process
  * @args: arguments
  * @line:string input by user
- * @av: argument vector
- * @linenumber: line number of the line read
- * @envp: environment variable
  * Return: void
  */
 void _fork(char **args, char *line)
