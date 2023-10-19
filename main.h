@@ -40,6 +40,8 @@ char **strtow_2(char *, char);
 
 /*myexit.c*/
 int _putint(int input, int fd);
+int _myexit(char **args, char **av, int linenumber);
+void _perror(int linenumber, char *estr, char **av, char **args);
 
 void _execve(char *line, char **av, int linenumber);
 
@@ -58,7 +60,8 @@ int _strlen(const char *s);
 
 char *_getenv(char *path_token, char **args);
 
-void _getpath(char *line, char **args, char **av, int linenumber);
+/*get path.c*/
+void _getpath(char **args);
 
 bool _isexec(char **args);
 
@@ -68,10 +71,9 @@ int _spacestrtok(char *line, char **args);
 
 void _parentpid(pid_t pid);
 void free_args(char **args);
-void _haspath(char **args, char *line);
+void _haspath(char **args);
 
-/*my exit .c*/
-int _myexit(char **args, char **av, int linenumber);
+
 void _fork(char **args, char *line, char **av, int linenumber);
 
 

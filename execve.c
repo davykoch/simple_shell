@@ -13,6 +13,26 @@ void _execve(char *line, char **av, int linenumber)
 
 	int arg_count = _spacestrtok(line, args);
 
+
+	if (_strcmp(line, "setenv") == 0)
+	{
+		if (!args[1] || args[2])
+		{
+			write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", 30);
+			return;
+		}
+		process_setenv(args[1], args[2]);
+	}
+	else if (_strcmp(args[0], "unsetenv") == 0)
+	{
+		if (!args[1])
+		{
+			write(STDERR_FILENO, "Usage: unsetenv VARIABLE\n", 26);
+			return;
+		}
+		process_unsetenv(parsed_args[1]);
+	}
+
 	if (arg_count > 0)
 	{
 		if (_strcmp(args[0], "exit") == 0)
@@ -28,8 +48,11 @@ void _execve(char *line, char **av, int linenumber)
 		/* handle exit*/
 		if (_strcmp(line, "exit") == 0)
 		{
-			free(line);
+			/* free(line); */
 			exit(EXIT_SUCCESS); /* Exit the shell*/
 		}
 	}
 }
+
+
+
