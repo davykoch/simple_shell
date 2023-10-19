@@ -1,7 +1,6 @@
 #include "main.h"
 /**
  * _getpath - runs excve if no path entered by user
- * @info: line read
  * @args: args from getline
  * Return:void
  */
@@ -10,7 +9,7 @@ void _getpath(char **args, char **av, int linenumber)
 
 	char *path = getenv("PATH");
 	char *path_token = strtow(path, ":"); /*custom?*/
-	(void)info;
+
 
 	while (path_token != NULL)
 	{

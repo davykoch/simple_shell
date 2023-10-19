@@ -21,7 +21,7 @@ void _execve1(char *line, char **av, int linenumber)
 		while (*env != NULL)
 		{
 			_putchar_str(*env);
-			_putchar("\n");
+			_putchar('\n');
 			env++;
 		}
 	}

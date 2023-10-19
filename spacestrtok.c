@@ -10,12 +10,18 @@ int _spacestrtok(char *line, char **args)
 	char *delim = " ";
 
 	int arg_count = 0;
-	/* char *token = strtow(line, delim); */ /*separate cmds singular*/
-	char **token = strtow(NULL, delim);
-	while (token != NULL) /*free token free args some where*/
+	char *token;  /* Change the token type to char* */
+	char **tokens = strtow(line, delim);
+
+	int i;
+	for (i = 0; tokens[i] != NULL; i++)
 	{
-		args[arg_count++] = strdup(token); /* strdup to maintain original line*/
-		token = strtow(NULL, delim);
+		token = tokens[i];  /* Get each individual token from tokens */
+		args[arg_count++] = strdup(token);
 	}
-	return (arg_count);
+
+	/* Free the tokens array when you're done with it */
+	free(tokens);
+
+	return arg_count;
 }
