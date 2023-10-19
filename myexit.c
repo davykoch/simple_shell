@@ -7,33 +7,39 @@
  */
 int _myexit(char **args)
 {
-	int exitcheck;
+	int exit_status;
+	int status;
 
-	if (args[1] != NULL) /* If there is an exit argument */
+	/* Check if an exit argument is provided */
+	if (args[1])
 	{
-		exitcheck = atoi(args[1]);
-		return (exitcheck);
-		/**
-		 * if (exitcheck == -1)
-		 *{
-		 * info->status = 2;
-		 * print_error(info, "Illegal number: ");
-		 *	_eputs(info->argv[1]);
-		 *	_eputchar('\n');
-		 *	return (1);
-		 *}
-		 *	info->err_num = _erratoi(info->argv[1]);
-		 *return (-2);
-		 *
-		 *exit(exit_code);
-		 */
+		exit_status = _erratoi(args[1]);
+		if (exit_status == -1)
+		{
+			status = 2;
+			p_error(info, "Illegal number: ", av);
+			_eputs(args[1]);
+			_eputchar('\n');
+			return (1);
+		}
+		return (-2);
 	}
-	else
-	{
-		/**
-		 * info->err_num = -1;
-		 *return (-2);
-		 */
-		return (0); /* exit(0); */
-	}
+	return (-2);
+}
+
+
+/**
+ * print_error - Print an error message with additional information.
+ * @info: A pointer to the info_t structure containing shell information.
+ * @estr: The error message to print.
+ */
+void _p_error(linenumber, char *estr, char **av)
+{
+	_eputs(av);
+	_eputs(": ");
+	_putint(linenumber, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(argv[0]);
+	_eputs(": ");
+	_eputs(estr);
 }

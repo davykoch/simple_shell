@@ -75,6 +75,7 @@ int main(int ac, char **av)
 				exit(EXIT_FAILURE);
 			}
 		}
+		handle_hash(line);
 		if (line[read - 1] == '\n')
 			line[read - 1] = '\0';
 		_execve1(line, av, linenumber);

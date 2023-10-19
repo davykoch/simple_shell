@@ -6,12 +6,12 @@
  * @line: getline line
  * Return: void
  */
-void _haspath(char **args, char **envp, char *line)
+void _haspath(char **args, char *line)
 {
 	if (access(args[0], X_OK) == 0)
 	{
 
-		if ((execve(args[0], args, envp)) == -1)
+		if ((execve(args[0], args, environ)) == -1)
 		{
 			perror("error -access");
 			free_args(args);

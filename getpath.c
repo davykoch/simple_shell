@@ -19,7 +19,7 @@ void _getpath(char *line, char **args, char **av, int linenumber)
 
 		if (access(full_path, X_OK) == 0)
 		{
-			int exve = execve(full_path, args);
+			int exve = execve(full_path, args, environ);
 
 			if (exve == -1)
 			{

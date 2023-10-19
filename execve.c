@@ -17,10 +17,7 @@ void _execve(char *line, char **av, int linenumber)
 	{
 		if (_strcmp(args[0], "exit") == 0)
 		{
-			int exit_status;
-
-			exit_status = _myexit(args);
-			exit(exit_status);
+			_myexit(args, av);
 		}
 
 		args[arg_count] = NULL;
