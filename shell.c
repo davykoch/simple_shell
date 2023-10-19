@@ -1,9 +1,9 @@
 #include "main.h"
 /**
-* free_args - free args
-* @args: arguments to be freed
-* Return: void
-*/
+ * free_args - free args
+ * @args: arguments to be freed
+ * Return: void
+ */
 void free_args(char **args)
 {
 	int i;
@@ -19,9 +19,9 @@ void free_args(char **args)
 	free(args);
 }
 /**
-* is_input - checks for interactive
-* Return: integer value
-*/
+ * is_input - checks for interactive
+ * Return: integer value
+ */
 int is_input(void)
 {
 
@@ -35,12 +35,12 @@ int is_input(void)
 	}
 }
 /**
-* main - its the main shell
-* @ac: argument count
-* @av: argument vector
-* @envp: environment variable
-* Return: 0 on success
-*/
+ * main - its the main shell
+ * @ac: argument count
+ * @av: argument vector
+ * @envp: environment variable
+ * Return: 0 on success
+ */
 int main(int ac, char **av)
 {
 	int linenumber = 0;
@@ -49,8 +49,7 @@ int main(int ac, char **av)
 
 	int from_pipe;
 
-
-	/* char *line = NULL;  *//* stores string from cmd line*/
+	/* char *line = NULL;  */ /* stores string from cmd line*/
 	char line[MAX_ARGS];
 
 	(void)ac;
@@ -62,7 +61,10 @@ int main(int ac, char **av)
 			write(STDOUT_FILENO, "$-", 2);
 		/* reead = getline(&line, &len, stdin); */
 		handle_input(line, from_pipe);
-		_execve1(line, av, linenumber);
+		if (!biultin(line))
+		{
+			_execve(line, av, linenumber);
+		}
 		/* free(line); */
 	}
 	/* free(line); */

@@ -1,11 +1,10 @@
 #include "main.h"
 /**
- * _execve1 - calls the prog and
+ * biultin - calls the prog and
  * @line: string input by user
- * @linenumber: line number of line read
- * @av: argument vector
+ * Return: int
  */
-void _execve1(char *line, char **av, int linenumber)
+int biultin(char *line)
 {
 	if (_strcmp(line, "env") == 0)
 	{
@@ -18,15 +17,13 @@ void _execve1(char *line, char **av, int linenumber)
 			_putchar('\n');
 			env++;
 		}
+		return (1);
 	}
 	else if (_strcmp(line, "exit") == 0)
 	{
 		/* free(line); */
 		exit(EXIT_SUCCESS); /* Exit the shell*/
+		return (1);
 	}
-	else
-	{
-		_execve(line, av, linenumber);
-	}
-
+	return (0);
 }

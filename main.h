@@ -46,8 +46,8 @@ void _perror(int linenumber, char *estr, char **av, char **args);
 
 void _execve(char *line, char **av, int linenumber);
 
-void _execve1(char *line, char **av, int linenumber);
-
+/* biultin.c*/
+int biultin(char *line);
 /*string functions*/
 char *_strdup(const char *str);
 
