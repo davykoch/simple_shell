@@ -6,7 +6,6 @@
 */
 int main(void)
 {
-<<<<<<< HEAD
 	int i;
 
 	if (args == NULL)
@@ -52,11 +51,6 @@ int main(int ac, char **av)
 	char *line = NULL; /* stores string from cmd line*/
 
 	(void)ac;
-=======
-	info_t info[] = {INFO_INIT};
-	int from_pipe;
-
->>>>>>> refs/remotes/origin/master
 	from_pipe = is_input();
 
 	while (1)
@@ -66,16 +60,9 @@ int main(int ac, char **av)
 			write(STDOUT_FILENO, "$- ", 2);
 			fflush(stdout);
 		}
-<<<<<<< HEAD
 		handle_hash(line);
 		if (line[read - 1] == '\n')
 			line[read - 1] = '\0';
 		_execve1(line, av, linenumber);
-=======
-		hsh(info, from_pipe);
-		_execve1(info);
-		/* return (0); */
-		free(info->input);
->>>>>>> refs/remotes/origin/master
 	}
 }
