@@ -1,10 +1,10 @@
 #include "main.h"
-
 /**
-* main - its the main shell
-* Return: 0 on success
-*/
-int main(void)
+ * free_args - free args
+ * @args: arguments to be freed
+ * Return: void
+ */
+void free_args(char **args)
 {
 	int i;
 
@@ -52,17 +52,34 @@ int main(int ac, char **av)
 
 	(void)ac;
 	from_pipe = is_input();
-
-	while (1)
+	while (1) /*check*/
 	{
+		linenumber++;
 		if (from_pipe && isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$-", 2);
+		read = getline(&line, &len, stdin);
+
+		if (read == -1)
 		{
-			write(STDOUT_FILENO, "$- ", 2);
-			fflush(stdout);
+			if (feof(stdin))
+			{
+				if (from_pipe && isatty(STDIN_FILENO))
+					write(STDOUT_FILENO, "\n", 1);
+				free(line);
+				exit(EXIT_SUCCESS);
+			}
+			else
+			{
+				perror("cannot get line"); /* check */
+				free(line);
+				exit(EXIT_FAILURE);
+			}
 		}
 		handle_hash(line);
 		if (line[read - 1] == '\n')
 			line[read - 1] = '\0';
 		_execve1(line, av, linenumber);
 	}
+	free(line);
+	return (0);
 }

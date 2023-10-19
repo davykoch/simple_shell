@@ -13,16 +13,9 @@ void _execve(char *line, char **av, int linenumber)
 
 	int arg_count = _spacestrtok(line, args);
 
-	arg_count = _spacestrtok(info, args);
-	if (arg_count <= 0)
+	if (arg_count > 0)
 	{
-		if (_strcmp(info->input, "exit") == 0)
-			exit(EXIT_SUCCESS);
-		return;
-	}
-	if (_strcmp(args[0], "exit") == 0)
-	{
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
 			_myexit(args, av);
 		}

@@ -5,7 +5,7 @@
  * @args: args from getline
  * Return:void
  */
-void _getpath(char *line, char **args, char **av, int linenumber)
+void _getpath(info_t *info, char **args)
 {
 
 	char *path = getenv("PATH");
