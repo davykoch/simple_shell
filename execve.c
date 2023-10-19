@@ -16,7 +16,7 @@ void _execve(char *line, char **av, int linenumber)
 	{
 		if (_strcmp(line, "exit") == 0)
 			exit(EXIT_SUCCESS);
-		free(line);
+		/* free(line); */
 		return;
 	}
 	if (_strcmp(args[0], "setenv") == 0)
@@ -24,15 +24,18 @@ void _execve(char *line, char **av, int linenumber)
 		if (!args[1] || args[2])
 		{
 			write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", 30);
+			/* free(line); */
 			return;
 		}
 		process_setenv(args[1], args[2]);
+		/* free(line); */
 	}
 	else if (_strcmp(args[0], "unsetenv") == 0)
 	{
 		if (!args[1])
 		{
 			write(STDERR_FILENO, "Usage: unsetenv VARIABLE\n", 26);
+			/* free(line); */
 			return;
 		}
 		process_unsetenv(args[1]);
@@ -40,9 +43,9 @@ void _execve(char *line, char **av, int linenumber)
 		if (_strcmp(args[0], "exit") == 0)
 		{
 			_myexit(args, av, linenumber);
-			free(line);
+			/* free(line); */
 		}
 		args[arg_count] = NULL;
 		_fork(args, line);
-		free(line);
+		/* free(line); */
 }

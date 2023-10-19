@@ -29,7 +29,7 @@ void _putchar_str(const char *s);
 void handle_hash(char *line);
 
 /*handle_input.c*/
-void handle_input(char *line, int from_pipe, ssize_t reead);
+void handle_input(char *line, int from_pipe);
 
 /*err_handlers.c*/
 void _eputs(char *str);

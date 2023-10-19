@@ -3,7 +3,7 @@
 * handle_hash - check if string has
 * comment (#) and voids it
 * @line: input
-*
+* Return: line
 */
 
 void handle_hash(char *line)
