@@ -36,7 +36,7 @@ void handle_input(char *line, int from_pipe, ssize_t reead)
 		/* free(input); */
 	}
 	line[reead] = '\0'; /* Null-terminate the buffer */
-	for (i = reead - 1; i > 0 && (line[i] == '\n' || linr[i] == '\r'); i--)
+	for (i = reead - 1; i > 0 && (line[i] == '\n' || line[i] == '\r'); i--)
 	{
 		line[i] = '\0';
 	}

@@ -21,7 +21,7 @@ extern char **environ;
 bool is_delim(char c, char *delim);
 
 /*putchar.c*/
-int _putchar(char *c);
+int _putchar(char c);
 void _putchar_str(const char *s);
 
 /*handlers.c*/
@@ -69,6 +69,7 @@ int _spacestrtok(char *line, char **args);
 void _parentpid(pid_t pid);
 void free_args(char **args);
 void _haspath(char **args, char *line);
+
 /*my exit .c*/
 int _myexit(char **args, char **av, int linenumber);
 void _fork(char **args, char *line, char **av, int linenumber);
