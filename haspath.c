@@ -2,8 +2,6 @@
 /**
  * _haspath - checks if has path
  *	@args: arguments
- * @envp: environment var
- * @line: getline line
  * Return: void
  */
 void _haspath(char **args, char *line)
@@ -14,8 +12,8 @@ void _haspath(char **args, char *line)
 		if ((execve(args[0], args, environ)) == -1)
 		{
 			perror("error -access");
-			free_args(args);
-			free(line);
+			/* free_args(args); */
+			/* free(info->input); */
 			exit(EXIT_FAILURE);
 		}
 	}

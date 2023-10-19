@@ -1,0 +1,20 @@
+#include "main.h"
+/**
+ * _tokenize - splits string characters
+  * @string: string to tokenize
+  * @delim: string delimitor
+  * Return: int
+*/
+int _tokenize(char *string, char *delim)
+{
+	char *token;
+
+	token = strtok(string, delim);
+	while (token != NULL)
+	{
+		token = strtok(NULL, delim); /*pass NULL to continue tokenizing*/
+
+	}
+	return (0); /*_exit()*/
+
+}

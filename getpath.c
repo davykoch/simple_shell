@@ -1,42 +1,43 @@
 #include "main.h"
 /**
  * _getpath - runs excve if no path entered by user
- * @line: line read
+ * @info: line read
  * @args: args from getline
- * @av: argument vector
- * @linenumber: line number of the line read
- * @envp: environment variable
  * Return:void
  */
 void _getpath(char *line, char **args, char **av, int linenumber)
 {
+
 	char *path = getenv("PATH");
-	char *path_token = strtok(path, ":");
+	char *path_token = strtok(path, ":"); /*custom?*/
+	(void)info;
 
 	while (path_token != NULL)
 	{
 		char *full_path = _getenv(path_token, args);
 
-		if (access(full_path, X_OK) == 0)
+		if (access(full_path, X_OK) == 0) /*can path be accessed*/
 		{
 			int exve = execve(full_path, args, environ);
 
 			if (exve == -1)
 			{
 				perror("error -execve");
-				free(line);
+				/* free(p_info->input); */
 				free(full_path);
 				exit(EXIT_FAILURE);
 			}
 		}
+		/* info->full_path = strdup(full_path); */
 		free(full_path);
-		path_token = strtok(NULL, ":");
+		path_token = strtok(NULL, ":"); /*adds delimiter*/
 	}
 	/*/ If we reach here, the command was not found in PATH*/
 	/*fprintf(stderr, "Command not found: %s\n", args[0]);*/
 	/*perror("command not found");*/
-	fprintf(stderr, "%s: %d: %s: not found\n", av[0], linenumber, args[0]);
-
-	free(line);
+	/*error should be sent to _Exit() */
+	/* fprintf(stderr, "%s: %d: %s: not found\n",/ *  av[0], */
+	/*linenumber * /, args[0]);*/
+	/* free(info->input); */
 	exit(EXIT_FAILURE);
 }
