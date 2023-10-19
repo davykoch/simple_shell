@@ -4,7 +4,6 @@
  * @line: string input by user
  * @linenumber: line number of line read
  * @av: argument vector
- * @envp: environment variable
  */
 void _execve1(char *line, char **av, int linenumber)
 {

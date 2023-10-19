@@ -2,6 +2,8 @@
 /**
  * _myexit - exits the shell
  *	@args:arguments provided
+ * @av: hsh
+ * @linenumber: linenumber
  * Return: exits with a given exit status
  *         (0) if info.argv[0] != "exit"
  */
@@ -25,11 +27,12 @@ int _myexit(char **args, char **av, int linenumber)
 	return (-2);
 }
 
-
 /**
- * p_error - Print an error message with additional information.
- * @info: A pointer to the info_t structure containing shell information.
+ * _perror - Print an error message with additional information.
+ * @linenumber: A pointer to the info_t structure containing shell information.
  * @estr: The error message to print.
+ * @av: its the hsh
+ * @args: arguments
  */
 void _perror(int linenumber, char *estr, char **av, char **args)
 {
