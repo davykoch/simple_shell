@@ -21,7 +21,7 @@ void _execve1(char *line, char **av, int linenumber)
 	}
 	else if (_strcmp(line, "exit") == 0)
 	{
-		/* free(input); */
+		free(line);
 		exit(EXIT_SUCCESS); /* Exit the shell*/
 	}
 	else

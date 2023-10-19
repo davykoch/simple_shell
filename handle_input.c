@@ -16,11 +16,13 @@ void handle_input(char *line, int from_pipe, ssize_t reead)
 		{
 			if (from_pipe && isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
+			free(line);
 			exit(EXIT_SUCCESS);
 		}
 		else
 		{
 			perror("cannot get line"); /* check */
+			free(line);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -28,10 +30,12 @@ void handle_input(char *line, int from_pipe, ssize_t reead)
 	{
 		if (from_pipe && isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);
+		free(line);
 		exit(EXIT_SUCCESS);
 	}
 	if (reead == '\0' || reead == EOF)
 	{
+		free(line);
 		exit(EXIT_SUCCESS);
 	}
 	line[reead] = '\0'; /* Null-terminate the buffer */
@@ -46,6 +50,7 @@ void handle_input(char *line, int from_pipe, ssize_t reead)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);
+		free(line);
 		exit(EXIT_SUCCESS);
 	}
 }
