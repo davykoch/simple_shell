@@ -8,7 +8,7 @@
  * @envp: environment variable
  * Return: void
  */
-void _fork(char **args, char *line, char **av)
+void _fork(char **args, char *line)
 {
 	pid_t pid;
 
@@ -28,7 +28,7 @@ void _fork(char **args, char *line, char **av)
 		}
 		else
 		{
-			_getpath(line, args);
+			_getpath(args);
 			free_args(args);
 		}
 	}

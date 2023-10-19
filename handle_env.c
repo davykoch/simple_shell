@@ -1,9 +1,9 @@
-#include "shell.h"
+#include "main.h"
 
 /**
- * process_setenv - Initialize a new environment variable.
- * @variable_name: The name of the variable.
- * @variable_value: The value assigned to the name variable.
+ * process_setenv - Initialize a new env variable.
+ * @variable_name:  name of the variable.
+ * @variable_value: value assigned to the name variable.
  *
  * Return: -1 on error, 0 on success.
  */
@@ -24,7 +24,7 @@ int process_setenv(char *variable_name, char *variable_value)
 
 /**
  * process_unsetenv - Remove a environment variable.
- * @variable_name: The name of the variable.
+ * @variable_name: name of the variable.
  *
  * Return: -1 on error, 0 on success.
  */

@@ -30,7 +30,7 @@ void _execve(char *line, char **av, int linenumber)
 			write(STDERR_FILENO, "Usage: unsetenv VARIABLE\n", 26);
 			return;
 		}
-		process_unsetenv(parsed_args[1]);
+		process_unsetenv(args[1]);
 	}
 
 	if (arg_count > 0)
@@ -41,7 +41,7 @@ void _execve(char *line, char **av, int linenumber)
 		}
 
 		args[arg_count] = NULL;
-		_fork(args, line, av, linenumber);
+		_fork(args, line);
 	}
 	else
 	{

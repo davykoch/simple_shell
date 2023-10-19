@@ -66,6 +66,9 @@ void _getpath(char **args);
 bool _isexec(char **args);
 
 int is_input(void);
+/*handle_env.c*/
+int process_setenv(char *variable_name, char *variable_value);
+int process_unsetenv(char *variable_name);
 
 int _spacestrtok(char *line, char **args);
 
@@ -74,7 +77,7 @@ void free_args(char **args);
 void _haspath(char **args);
 
 
-void _fork(char **args, char *line, char **av, int linenumber);
+void _fork(char **args, char *line);
 
 
 
