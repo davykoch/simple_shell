@@ -5,7 +5,7 @@
  * Return: exits with a given exit status
  *         (0) if info.argv[0] != "exit"
  */
-int _myexit(char **args)
+int _myexit(char **args, char **av, int linenumber)
 {
 	int exit_status;
 	int status;
@@ -17,7 +17,7 @@ int _myexit(char **args)
 		if (exit_status == -1)
 		{
 			status = 2;
-			p_error(info, "Illegal number: ", av);
+			p_error(linenumber, "Illegal number: ", av);
 			_eputs(args[1]);
 			_eputchar('\n');
 			return (1);
@@ -29,7 +29,7 @@ int _myexit(char **args)
 
 
 /**
- * print_error - Print an error message with additional information.
+ * p_error - Print an error message with additional information.
  * @info: A pointer to the info_t structure containing shell information.
  * @estr: The error message to print.
  */

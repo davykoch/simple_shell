@@ -4,7 +4,7 @@
  *	@args: arguments
  * Return: void
  */
-void _haspath(char **args, char *line)
+void _haspath(char **args)
 {
 	if (access(args[0], X_OK) == 0)
 	{

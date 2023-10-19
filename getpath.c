@@ -5,11 +5,11 @@
  * @args: args from getline
  * Return:void
  */
-void _getpath(info_t *info, char **args)
+void _getpath(char **args, char **av, int linenumber)
 {
 
 	char *path = getenv("PATH");
-	char *path_token = strtok(path, ":"); /*custom?*/
+	char *path_token = strtow(path, ":"); /*custom?*/
 	(void)info;
 
 	while (path_token != NULL)

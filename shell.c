@@ -44,9 +44,10 @@ int is_input(void)
 int main(int ac, char **av)
 {
 	int linenumber;
-	size_t len = 0;
-	ssize_t read;
+	/* size_t len = 0; */
+	ssize_t reead;
 	int from_pipe;
+
 
 	char *line = NULL; /* stores string from cmd line*/
 
@@ -57,27 +58,9 @@ int main(int ac, char **av)
 		linenumber++;
 		if (from_pipe && isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$-", 2);
-		read = getline(&line, &len, stdin);
-
-		if (read == -1)
-		{
-			if (feof(stdin))
-			{
-				if (from_pipe && isatty(STDIN_FILENO))
-					write(STDOUT_FILENO, "\n", 1);
-				free(line);
-				exit(EXIT_SUCCESS);
-			}
-			else
-			{
-				perror("cannot get line"); /* check */
-				free(line);
-				exit(EXIT_FAILURE);
-			}
-		}
-		handle_hash(line);
-		if (line[read - 1] == '\n')
-			line[read - 1] = '\0';
+		/* read = getline(&line, &len, stdin); */
+		reead = read(STDIN_FILENO, line, MAX_ARGS);
+		handle_input(line, from_pipe, reead);
 		_execve1(line, av, linenumber);
 	}
 	free(line);

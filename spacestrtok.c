@@ -10,12 +10,12 @@ int _spacestrtok(char *line, char **args)
 	char *delim = " ";
 
 	int arg_count = 0;
-	char *token = strtok(line, delim); /*separate cmds singular*/
-
+	/* char *token = strtow(line, delim); */ /*separate cmds singular*/
+	char **token = strtow(NULL, delim);
 	while (token != NULL) /*free token free args some where*/
 	{
 		args[arg_count++] = strdup(token); /* strdup to maintain original line*/
-		token = strtok(NULL, delim);
+		token = strtow(NULL, delim);
 	}
 	return (arg_count);
 }

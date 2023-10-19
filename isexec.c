@@ -8,7 +8,7 @@ bool _isexec(char **args)
 {
 	char *epath = getenv("PATH");
 
-	char *epath_token = strtok(epath, ":");
+	char *epath_token = strtow(epath, ":");
 
 	while (epath_token != NULL)
 	{
