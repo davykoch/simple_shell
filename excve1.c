@@ -8,8 +8,12 @@
  */
 void _execve1(char *line, char **av, int linenumber)
 {
+	if (_strcmp(line, "setenv")
+	{
 
-	if (_strcmp(line, "env") == 0)
+	}
+
+	elseif (_strcmp(line, "env") == 0)
 	{
 		/* Handle the "env" command by printing the environment variables*/
 		char **env = environ;
