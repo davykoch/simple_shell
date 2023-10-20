@@ -47,7 +47,7 @@ int _putint(int input, int fd);
 int _myexit(char **args, char **av, int linenumber);
 void _perror(int linenumber, char *estr, char **av, char **args);
 
-void _execve(char *line, char **av, int linenumber);
+char **_execve(char *line, char **av, int linenumber);
 
 /* biultin.c*/
 int biultin(char *line);
@@ -81,7 +81,7 @@ void free_args(char **args);
 void _haspath(char **args);
 
 
-void _fork(char **args, char *line);
+void _fork(char *line, char **av, int linenumber);
 
 
 

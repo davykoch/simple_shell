@@ -43,7 +43,6 @@ ssize_t _getline(char **line, size_t *n)
 			return (line_size);
 		}
 	}
-
 	(*line)[line_size] = '\0';
 	return (line_size);
 }

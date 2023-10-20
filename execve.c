@@ -1,51 +1,71 @@
 #include "main.h"
 /**
-* _execve - calls progs
-* @line:string input by user
-* @av: argument vector
-* @linenumber: line number of the line read
-* Return: void
-*/
-void _execve(char *line, char **av, int linenumber)
+ * _execve - calls progs
+ * @line:string input by user
+ * @av: argument vector
+ * @linenumber: line number of the line read
+ * Return: void
+ */
+char **_execve(char *line, char **av, int linenumber)
 {
-	char *args[64]; /* check*/
+	/* char *args[] = {NULL, NULL};  */ /* check*/
+	char **args = (char **)malloc(sizeof(char *) * (MAX_ARGS + 1));
+	int arg_count;
 
-	int arg_count = _spacestrtok(line, args);
+	if (args == NULL)
+	{
+		perror("Memory allocation error");
+		exit(EXIT_FAILURE);
+	}
+
+	arg_count = _spacestrtok(line, args);
 
 	if (arg_count <= 0)
 	{
 		if (_strcmp(line, "exit") == 0)
 			exit(EXIT_SUCCESS);
-		/* free(line); */
-		return;
+		free(args);
+		freeline(&line);
+		return (NULL);
 	}
+
 	if (_strcmp(args[0], "setenv") == 0)
 	{
 		if (!args[1] || args[2])
 		{
 			write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", 30);
-			/* free(line); */
-			return;
+			freeline(&line);
+			free(args);
+			exit(EXIT_FAILURE);
 		}
-		process_setenv(args[1], args[2]);
-		/* free(line); */
+		if (!process_setenv(args[1], args[2]))
+		{
+			perror("something\n");
+			freeline(&line);
+			free(args);
+		}
 	}
 	else if (_strcmp(args[0], "unsetenv") == 0)
 	{
 		if (!args[1])
 		{
 			write(STDERR_FILENO, "Usage: unsetenv VARIABLE\n", 26);
-			/* free(line); */
-			return;
+			freeline(&line);
+			exit(EXIT_FAILURE);
 		}
-		process_unsetenv(args[1]);
-	}
-		if (_strcmp(args[0], "exit") == 0)
+		if (!process_unsetenv(args[1]))
 		{
-			_myexit(args, av, linenumber);
-			/* free(line); */
+			perror("dint set\n");
+			freeline(&line);
+			free(args);
 		}
-		args[arg_count] = NULL;
-		_fork(args, line);
-		/* free(line); */
+	}
+	if (_strcmp(args[0], "exit") == 0)
+	{
+		_myexit(args, av, linenumber);
+		free(line);
+	}
+	args[arg_count] = NULL;
+	return (args);
+	/*free(line); */
 }

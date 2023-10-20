@@ -63,7 +63,7 @@ int main(int ac, char **av)
 		handle_input(line, from_pipe);
 		if (!biultin(line))
 		{
-			_execve(line, av, linenumber);
+				_fork(line, av, linenumber);
 		}
 		/* free(line); */
 	}
