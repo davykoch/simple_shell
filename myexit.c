@@ -5,24 +5,22 @@
  * @av: hsh
  * @linenumber: linenumber
  */
-void _myexit(char **args, char **av, int linenumber)
+void _myexit(char *line)
 {
 	int exit_status;
+	char *msg = "not valid\n";
 
 	/* Check if an exit argument is provided */
-	if (args[1])
+	if (line[0] == '\0' || line[1] == '\0')
+		exit(EXIT_FAILURE);
+	else
+		exit_status = ato_i(&line[1]);
+	if (exit_status == 0 && line[1] != 0)
 	{
-		exit_status = _erratoi(args[1]);
-		if (exit_status == -1)
-		{
-			_perror(linenumber, "Illegal number: ", av, args);
-			_eputs(args[1]);
-			_eputchar('\n');
-			exit(exit_status);
-		}
-		exit(exit_status);
+		write(STDERR_FILENO, msg, _strlen(msg));
+		exit(EXIT_FAILURE);
 	}
-	exit(EXIT_SUCCESS);
+	exit(exit_status);
 }
 
 /**
@@ -41,4 +39,39 @@ void _perror(int linenumber, char *estr, char **av, char **args)
 	_eputs(args[0]);
 	_eputs(": ");
 	_eputs(estr);
+}
+/**
+ * ato_i - str to int
+ * @t:to be changed to int
+ */
+int ato_i(char *t)
+{
+	int k = 0;
+	unsigned int i = 0;
+	int m = 1;
+	int a = 0;
+
+	while (t[k])
+	{
+		if (t[k] == 45)
+		{
+			m *= -1;
+		}
+		while (t[k] >= 48 && t[k] <= 57)
+		{
+			a = 1;
+			i = (i * 10) + (t[k] - '0');
+			k++;
+		}
+
+		if (a == 1)
+		{
+			break;
+		}
+
+		k++;
+	}
+
+	i *= m;
+	return (i);
 }

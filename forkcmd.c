@@ -5,11 +5,12 @@
  * @line:string input by user
  * Return: void
  */
-void _fork(char *line, char **av, int linenumber)
+void _fork(char *line)
 {
 	pid_t pid;
 	/* bool executable; */
 	char *args[] = {NULL, NULL};
+	int status;
 
 	pid = fork(); /* child process*/
 	if (pid == -1)
@@ -22,20 +23,15 @@ void _fork(char *line, char **av, int linenumber)
 		/* char **args = _execve(line, av, linenumber); */
 		_spacestrtok(line, args);
 		args[0] = line;
-		if (_strcmp(args[0], "exit") == 0)
-			_myexit(args, av, linenumber);
-
-		if (strchr(args[0], '/') != NULL)
+		if (execve(args[0], args, environ) == -1)
 		{
-			_haspath(args);
-		}
-		else
-		{
-			_getpath(args);
+			perror("./hsh");
+			exit(errno);
 		}
 	}
 	else
 	{
-		_parentpid(pid);
+		wait(&status);
+		/* _parentpid(pid); */
 	}
 }

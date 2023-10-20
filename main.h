@@ -17,10 +17,10 @@ extern char **environ;
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
 #define MAX_ARGS 1024
-#define MAX_LINE 1023
+
 
 /*getline*/
-ssize_t _getline(char **line, size_t *line_size);
+
 /* bool is_delim(char c, char *delim); */
 int is_delim(char c, char *delim);
 
@@ -44,13 +44,13 @@ char **strtow_2(char *, char);
 
 /*myexit.c*/
 int _putint(int input, int fd);
-void _myexit(char **args, char **av, int linenumber);
+void _myexit(char *line);
 void _perror(int linenumber, char *estr, char **av, char **args);
 
-char **_execve(char *line, char **av, int linenumber);
+
 
 /* biultin.c*/
-int biultin(char *line);
+int biultin(char *line, char **av, int linenumber);
 /*string functions*/
 char *_strdup(const char *str);
 
@@ -71,18 +71,17 @@ bool _isexec(char **args);
 
 int is_input(void);
 /*handle_env.c*/
-int process_setenv(char *variable_name, char *variable_value);
-int process_unsetenv(char *variable_name);
+
 
 char **_spacestrtok(char *line, char **s);
 
 void _parentpid(pid_t pid);
-void free_args(char **args);
+
 void _haspath(char **args);
 
 
-void _fork(char *line, char **av, int linenumber);
-
+void _fork(char *line);
+int ato_i(char *t);
 
 
 #endif /*MAIN_H*/

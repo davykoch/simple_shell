@@ -43,27 +43,20 @@ char *_strcpy(char *dest, char *src)
 }
 /**
  * _strcmp - compares two strings
- * @s1: string 1
- * @s2: sring 2
+ * @str1: string 1
+ * @str2: sring 2
  * Return: an integer value based on the comparison result.
  */
-int _strcmp(char *s1, char *s2)
+int _strcmp(char *str1, char *str2)
 {
-	while (*s1 && *s2)
+	int k;
+
+	for (k = 0; str1[k] != '\0' && str2[k] != '\0'; k++)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2); /*Compare ASCII values of characters*/
-		s1++;
-		s2++;
+		if (str1[k] != str2[k])
+			return (str1[k] - str2[k]);
 	}
-
-	/*If we reach this point, either one or both strings have ended.*/
-	/*Compare the remaining characters or check if both strings are equal.*/
-
-	if (*s1 == *s2)
-		return (0); /*Both strings are equal*/
-	else
-		return (*s1 < *s2 ? -1 : 1); /*Compare based on ASCII values*/
+	return (0);
 }
 /**
  * _atoi - converts a string to an integer

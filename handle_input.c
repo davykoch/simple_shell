@@ -45,5 +45,5 @@ void handle_input(char *line, int from_pipe)
 			write(STDOUT_FILENO, "\n", 1);
 		exit(EXIT_SUCCESS);
 	}
-	handle_hash(line);
+	/* handle_hash(line); */
 }
