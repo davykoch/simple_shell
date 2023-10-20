@@ -44,7 +44,7 @@ char **strtow_2(char *, char);
 
 /*myexit.c*/
 int _putint(int input, int fd);
-int _myexit(char **args, char **av, int linenumber);
+void _myexit(char **args, char **av, int linenumber);
 void _perror(int linenumber, char *estr, char **av, char **args);
 
 char **_execve(char *line, char **av, int linenumber);
@@ -74,7 +74,7 @@ int is_input(void);
 int process_setenv(char *variable_name, char *variable_value);
 int process_unsetenv(char *variable_name);
 
-int _spacestrtok(char *line, char **args);
+char **_spacestrtok(char *line, char **s);
 
 void _parentpid(pid_t pid);
 void free_args(char **args);

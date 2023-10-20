@@ -2,29 +2,22 @@
 /**
 * _spacestrtok - tokenizes strings
 * @line: string to tokenize
-* @args: string arguments
+* @s: string arguments
 * Return: count
 */
-int _spacestrtok(char *line, char **args)
+char **_spacestrtok(char *line, char **s)
 {
-	char *delim = " ";
-
+	char *delim = " \n\t\r";
+	char *p = NULL;
 	int arg_count = 0;
 
-	char *token;  /* Change the token type to char* */
+	p = strtok(line, delim);
 
-	char **tokens = strtow(line, delim);
-
-	int i;
-
-	for (i = 0; tokens[i] != NULL; i++)
+	while (p)
 	{
-		token = tokens[i];  /* Get each individual token from tokens */
-		args[arg_count++] = strdup(token);
+		s[arg_count++] = p;
+		p = strtok(NULL, delim);
 	}
-
-	/* Free the tokens array when you're done with it */
-	free(tokens);
-
-	return (arg_count);
+	s[arg_count] = NULL;
+	return (s);
 }

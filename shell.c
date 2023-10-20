@@ -52,7 +52,7 @@ int main(int ac, char **av)
 	/* char *line = NULL;  */ /* stores string from cmd line*/
 	char line[MAX_ARGS];
 
-	(void)ac;
+	(void)ac;/*fileopen*/
 	from_pipe = is_input();
 	while (1) /*check*/
 	{
@@ -62,6 +62,7 @@ int main(int ac, char **av)
 			write(STDOUT_FILENO, "$-", 2);
 			fflush(stdout);
 		}
+		
 		/* reead = getline(&line, &len, stdin); */
 		handle_input(line, from_pipe);
 		if (!biultin(line))

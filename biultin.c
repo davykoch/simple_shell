@@ -19,7 +19,7 @@ int biultin(char *line)
 		}
 		return (1);
 	}
-	else if (_strcmp(line, "exit") == 0)
+	if (_strcmp(line, "exit") == 0)
 	{
 		/* free(line); */
 		exit(EXIT_SUCCESS); /* Exit the shell*/

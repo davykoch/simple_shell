@@ -4,10 +4,8 @@
  *	@args:arguments provided
  * @av: hsh
  * @linenumber: linenumber
- * Return: exits with a given exit status
- *         (0) if info.argv[0] != "exit"
  */
-int _myexit(char **args, char **av, int linenumber)
+void _myexit(char **args, char **av, int linenumber)
 {
 	int exit_status;
 
@@ -20,11 +18,11 @@ int _myexit(char **args, char **av, int linenumber)
 			_perror(linenumber, "Illegal number: ", av, args);
 			_eputs(args[1]);
 			_eputchar('\n');
-			return (1);
+			exit(exit_status);
 		}
-		return (-2);
+		exit(exit_status);
 	}
-	return (-2);
+	exit(EXIT_SUCCESS);
 }
 
 /**
