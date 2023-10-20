@@ -17,7 +17,10 @@ extern char **environ;
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
 #define MAX_ARGS 1024
+#define MAX_LINE 1023
 
+/*getline*/
+ssize_t _getline(char **line, size_t *line_size);
 /* bool is_delim(char c, char *delim); */
 int is_delim(char c, char *delim);
 
@@ -30,7 +33,7 @@ void handle_hash(char *line);
 
 /*handle_input.c*/
 void handle_input(char *line, int from_pipe);
-
+void freeline(char **line);
 /*err_handlers.c*/
 void _eputs(char *str);
 int _eputchar(char c);

@@ -1,5 +1,16 @@
 #include "main.h"
 /**
+ * 
+ * 
+*/
+void freeline(char **line)
+{
+	if (line != NULL)
+			{
+				free(line);
+			}
+}
+/**
  * handle_input - handles input
  * @line:user input
  * @from_pipe: isatty
@@ -11,21 +22,22 @@ void handle_input(char *line, int from_pipe)
 	/* int i = 0; */
 	int k = 0;
 	ssize_t reead;
+	size_t line_size = 128;
 
-	reead = read(STDIN_FILENO, line, MAX_ARGS);
+	reead = _getline(&line, &line_size);
 	if (reead == -1)
 	{
 		if (feof(stdin))
 		{
 			if (from_pipe && isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
-			/* free(line); */
+			freeline(&line);
 			exit(EXIT_SUCCESS);
 		}
 		else
 		{
 			perror("cannot get line"); /* check */
-									   /* 	free(line); */
+			freeline(&line);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -44,13 +56,16 @@ void handle_input(char *line, int from_pipe)
 	 *}
 	 */
 	if (reead == '\0' || reead == EOF)
+	{
+		freeline(&line);
 		exit(EXIT_SUCCESS);
+	}
 
 	if (reead == 0) /* End of File (Ctrl+D) */
 	{
 		if (from_pipe && isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);
-		/* free(line); */
+		freeline(&line);
 		exit(EXIT_SUCCESS);
 	}
 	handle_hash(line);
