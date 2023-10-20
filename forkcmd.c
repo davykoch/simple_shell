@@ -25,6 +25,7 @@ void _fork(char *line, char **av, int linenumber)
 		{
 			_haspath(args);
 			freeline(&line);
+			free(args);
 		}
 		else
 		{

@@ -58,12 +58,15 @@ int main(int ac, char **av)
 	{
 		linenumber++;
 		if (from_pipe && isatty(STDIN_FILENO))
+		{
 			write(STDOUT_FILENO, "$-", 2);
+			fflush(stdout);
+		}
 		/* reead = getline(&line, &len, stdin); */
 		handle_input(line, from_pipe);
 		if (!biultin(line))
 		{
-				_fork(line, av, linenumber);
+			_fork(line, av, linenumber);
 		}
 		/* free(line); */
 	}

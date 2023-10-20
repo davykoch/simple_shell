@@ -43,6 +43,7 @@ char **_execve(char *line, char **av, int linenumber)
 			perror("something\n");
 			freeline(&line);
 			free(args);
+			return (NULL);
 		}
 	}
 	else if (_strcmp(args[0], "unsetenv") == 0)
@@ -51,6 +52,7 @@ char **_execve(char *line, char **av, int linenumber)
 		{
 			write(STDERR_FILENO, "Usage: unsetenv VARIABLE\n", 26);
 			freeline(&line);
+			free(args);
 			exit(EXIT_FAILURE);
 		}
 		if (!process_unsetenv(args[1]))
