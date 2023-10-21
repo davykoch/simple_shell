@@ -1,92 +1,80 @@
-#include "main.h"
+#include "shell.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: the string whose length to check
- *
- * Return: integer length of string
+ * comp_strings - Compare two strings.
+ * @str1: First string.
+ * @str2: Second string.
+ * Return: Negative value if str1 < str2, 0 if str1 == str2
+ * else positive.
  */
-int _strlen(const char *s)
+int comp_strings(const char *str1, const char *str2)
 {
-	int i = 0;
+	int idx = 0;
 
-	if (!s)
-		return (0);
-	while (*s++)
-		i++; /*Increment 'i' for each character in the string*/
-	return (i);
+	while (str1[idx] == str2[idx])
+		idx++;
+
+	return (str1[idx] - str2[idx]);
 }
+
 /**
- * _strcpy - copies a string from source to destination
- * @dest: destination string
- * @src: source string
- * Return: pointer to destination string
+ * comp_n_strings - Compare two strings.
+ * @str1: First string.
+ * @str2: Second string.
+ * Return: Negative value if st1 < str2, 0 if str1 == str2, else positive.
  */
-char *_strcpy(char *dest, char *src)
+int comp_n_strings(const char *str1, const char *str2)
 {
-	int i = 0;
+	int idx;
 
-	if (dest == src || src == NULL)
-		return (dest);
-
-/*Copy characters from src to dest until null terminator is encountered*/
-	while (src[i])
+	for (idx = 0; str1[idx] != '\0' || str2[idx] != '\0'; idx++)
 	{
-		dest[i] = src[i];
-		i++;
-	}
-
-	/*Null-terminate the destination string*/
-	dest[i] = '\0';
-
-	return (dest);
-}
-/**
- * _strcmp - compares two strings
- * @str1: string 1
- * @str2: sring 2
- * Return: an integer value based on the comparison result.
- */
-int _strcmp(char *str1, char *str2)
-{
-	int k;
-
-	for (k = 0; str1[k] != '\0' && str2[k] != '\0'; k++)
-	{
-		if (str1[k] != str2[k])
-			return (str1[k] - str2[k]);
+		if (str1[idx] != str2[idx])
+			return (str1[idx] - str2[idx]);
 	}
 	return (0);
 }
+
 /**
- * _atoi - converts a string to an integer
- * @s: the string to be converted
- * Return: 0 if no numbers in the string, converted number otherwise
+ * _strlen - Calculate length of a string.
+ * @input_str: Input string.
+ * Return: Length of the string.
  */
-int _atoi(char *s)
+int _strlen(const char *input_str)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+	int len = 0;
 
-	for (i = 0; s[i] != '\0' && flag != 2; i++)
-	{
-		if (s[i] == '-')
-			sign *= -1;
+	while (input_str[len] != '\0')
+		len++;
 
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
-		}
-		else if (flag == 1)
-			flag = 2;
-	}
+	return (len);
+}
 
-	if (sign == -1)
-		output = -result;
-	else
-		output = result;
+/**
+ * _stringconcat - Concatenate two strings.
+ * @str1: First string.
+ * @str2: Second string to be appended to first string.
+ * Return: Pointer to the concatenated string; else NULL.
+ */
+char *_stringconcat(char *str1, char *str2)
+{
+	char *merged_string;
+	int i, j;
 
-	return (output);
+	if (!str1)
+		str1 = "";
+	if (!str2)
+		str2 = "";
+
+	merged_string = malloc(_strlen(str1) + _strlen(str2) + 1);
+	if (!merged_string)
+		exit(0);
+
+	for (i = 0; str1[i] != '\0'; i++)
+		merged_string[i] = str1[i];
+	for (j = 0; str2[j] != '\0'; j++)
+		merged_string[i + j] = str2[j];
+	merged_string[i + j] = '\0';
+
+	return (merged_string);
 }
