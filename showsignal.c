@@ -8,6 +8,6 @@ void show_signal(int signal_val)
 {
 	if (signal_val == SIGINT)
 	{
-		write(STDOUT_FILENO, "\n$ ", 3);
+		write(STDOUT_FILENO, "\n$ ", 3);
 	}
 }

@@ -28,7 +28,7 @@ int main(int args_count, char *args_values[], char **env_vars)
 			continue;
 		}
 		release_strings(99, 1, user_input);
-		if (manage_exit_cmd(cmds, env_vars))
+		if (execute_builtin_cmd(cmds, env_vars))
 			continue;
 		child_process = fork();
 		if (child_process == 0)
